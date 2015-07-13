@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><ui:insert name="title">#{messages['application.defaultpage.title']}
+		</ui:insert></title>
+	<link rel="stylesheet"
+		href="#{request.contextPath}/themes/#{primefacesThemeBean.theme}/skin.css" />
+</h:head>
+<h:body>
+	<div id="container">
+		<div id="header">
+			<ui:insert name="header">
+			#{messages['defaultpage.header.content']}
+			</ui:insert>
+		</div>
+		<div id="content">
+			<ui:insert name="content">
+			#{messages['defaultpage.body.content']}
+			</ui:insert>
+		</div>
+		<div id="footer">
+			<ui:insert name="footer">
+			#{messages['defaultpage.footer.content']}
+			</ui:insert>
+		</div>
+	</div>
+</h:body>
+
+</html>
