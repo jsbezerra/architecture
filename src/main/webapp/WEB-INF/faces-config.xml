@@ -4,10 +4,13 @@
 	version="2.2">
 
 	<application>
-		<message-bundle>messages</message-bundle>
 		<locale-config>
 			<default-locale>pt_BR</default-locale>
 			<supported-locale>pt_BR</supported-locale>
 		</locale-config>
+		<resource-bundle>
+			<base-name>br.com.inadimplente.messages</base-name>
+			<var>messages</var>
+		</resource-bundle>
 	</application>
 </faces-config>
