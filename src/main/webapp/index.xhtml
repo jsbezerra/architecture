@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/simple.xhtml">
+	<ui:define name="title">
+		#{messages['loginpage.title']}
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<p:panelGrid columns="3">
+				<h:outputText value="#{messages['user.name']}" />
+				<p:inputText id="userName" value="#{user.name}" required="true"
+					requiredMessage="#{messages['user.name.validation']}" />
+				<p:message for="userName" styleClass="errorMessage" />
+
+				<h:outputText value="#{messages['user.password']}" />
+				<p:password id="password" value="#{user.password}" required="true"
+					requiredMessage="#{messages['user.password.validation']}" />
+				<p:message for="password" styleClass="errorMessage" />
+			</p:panelGrid>
+			<h:commandButton value="#{messages['application.login']}" action="home?faces-redirect=true" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
