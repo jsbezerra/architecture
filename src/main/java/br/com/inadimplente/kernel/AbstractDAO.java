@@ -1,7 +1,7 @@
 package br.com.inadimplente.kernel;
 
 import static javax.transaction.Transactional.TxType.SUPPORTS;
-import static javax.transaction.Transactional.TxType.MANDATORY;
+import static javax.transaction.Transactional.TxType.REQUIRED;
 
 import java.util.List;
 
@@ -30,17 +30,17 @@ public abstract class AbstractDAO<T> {
 		return entityManager;
 	}
 
-	@Transactional(value = MANDATORY)
+	@Transactional(value = REQUIRED)
 	public void create(T entity) {
 		getEntityManager().persist(entity);
 	}
 
-	@Transactional(value=MANDATORY)
+	@Transactional(value=REQUIRED)
 	public void update(T entity) {
 		getEntityManager().merge(entity);
 	}
 
-	@Transactional(value=MANDATORY)
+	@Transactional(value=REQUIRED)
 	public void delete(T entity) {
 		getEntityManager().remove(entity);
 	}
