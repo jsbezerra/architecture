@@ -31,7 +31,7 @@ public abstract class AbstractDAO<T> {
 	}
 
 	@Transactional(value = MANDATORY)
-	protected void create(T entity) {
+	public void create(T entity) {
 		getEntityManager().persist(entity);
 	}
 
