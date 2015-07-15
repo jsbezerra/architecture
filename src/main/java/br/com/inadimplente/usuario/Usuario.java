@@ -32,7 +32,7 @@ public class Usuario {
 	@Column(name="tipo", nullable=false, unique=false)
 	@Enumerated(EnumType.STRING)
 	@NotNull
-	private TipoUsuario tipoUsuario;
+	private TipoUsuario tipo;
 
 	public Integer getId() {
 		return id;
@@ -58,12 +58,12 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public TipoUsuario getTipoUsuario() {
-		return tipoUsuario;
+	public TipoUsuario getTipo() {
+		return tipo;
 	}
 
-	public void setTipoUsuario(TipoUsuario tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
+	public void setTipo(TipoUsuario tipo) {
+		this.tipo = tipo;
 	}
 
 	

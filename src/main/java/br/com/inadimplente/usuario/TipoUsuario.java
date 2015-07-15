@@ -2,6 +2,16 @@ package br.com.inadimplente.usuario;
 
 public enum TipoUsuario {
 	
-	ADMIN, NORMAL
+	ADMIN("administrador"), NORMAL("normal");
+	
+	private String label;
+
+    private TipoUsuario(String label) {
+        this.label = label;
+    }
+
+    public String getLabel() {
+        return label;
+    }
 
 }
