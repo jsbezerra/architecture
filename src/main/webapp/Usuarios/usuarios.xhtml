@@ -13,6 +13,7 @@
 	<ui:define name="content">
 		<p:panel id="usuarioCrud" toggleable="true" closable="true">
 			<h:form>
+				<p:growl id="growl" sticky="true" showDetail="true" />
 				<p:panelGrid columns="3">
 					<h:outputText value="#{messages['usuariocrud.nome']}" />
 					<p:inputText id="nome" value="#{usuarioView.entity.nome}"
@@ -22,7 +23,7 @@
 
 					<h:outputText value="#{messages['usuariocrud.email']}" />
 					<p:inputText id="email" value="#{usuarioView.entity.email}"
-						required="false" />
+						required="true" />
 					<p:watermark for="email"
 						value="#{messages['usuario.email.watermark']}" />
 
@@ -33,9 +34,11 @@
 							itemValue="#{tipo}" itemLabel="#{tipo.label}" />
 					</p:selectOneMenu>
 				</p:panelGrid>
-				<h:commandButton value="#{messages['crud.create']}" action="#{usuarioView.create()}"/>
+				<p:commandButton value="#{messages['crud.create']}"
+					action="#{usuarioView.create()}" update="@form :usuarioList" />
 			</h:form>
 		</p:panel>
+		<p:separator />
 		<p:panel>
 			<p:dataTable id="usuarioList" var="usuario"
 				value="#{usuarioDAO.listAll()}">
