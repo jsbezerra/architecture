@@ -14,21 +14,29 @@
 </h:head>
 <h:body>
 	<div id="container">
-		<div id="header">
-			<ui:insert name="header">
-			#{messages['defaultpage.header.content']}
-			</ui:insert>
-		</div>
-		<div id="content">
-			<ui:insert name="content">
-			#{messages['defaultpage.body.content']}
-			</ui:insert>
-		</div>
-		<div id="footer">
-			<ui:insert name="footer">
-			#{messages['defaultpage.footer.content']}
-			</ui:insert>
-		</div>
+		<p:layout fullPage="true">
+			<p:layoutUnit position="north">
+				<div id="header">
+					<ui:insert name="header">
+				#{messages['defaultpage.header.content']}
+				</ui:insert>
+				</div>
+			</p:layoutUnit>
+			<p:layoutUnit position="center">
+				<div id="content">
+					<ui:insert name="content">
+				#{messages['defaultpage.body.content']}
+				</ui:insert>
+				</div>
+			</p:layoutUnit>
+			<p:layoutUnit position="south">
+				<div id="footer">
+					<ui:insert name="footer">
+				#{messages['defaultpage.footer.content']}
+				</ui:insert>
+				</div>
+			</p:layoutUnit>
+		</p:layout>
 	</div>
 </h:body>
 
