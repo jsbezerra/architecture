@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/simple.xhtml">
+	<ui:define name="title">
+		#{messages['usuariopage.title']}
+	</ui:define>
+	<ui:define name="content">
+		<p:panel id="usuarioCrud" toggleable="true" closable="true">
+			<h:form>
+				<p:panelGrid columns="3">
+					<h:outputText value="#{messages['usuariocrud.nome']}" />
+					<p:inputText id="nome" value="#{usuarioView.entity.nome}"
+						required="true" />
+					<p:watermark for="nome"
+						value="#{messages['usuario.nome.watermark']}" />
+
+					<h:outputText value="#{messages['usuariocrud.email']}" />
+					<p:inputText id="email" value="#{usuarioView.entity.email}"
+						required="false" />
+					<p:watermark for="email"
+						value="#{messages['usuario.email.watermark']}" />
+
+					<h:outputText value="#{messages['usuariocrud.tipo']}" />
+					<p:selectOneMenu id="tipo" value="#{usuarioView.entity.tipo}"
+						required="false">
+						<f:selectItems value="#{usuarioView.tiposDeUsuarios}" var="tipo"
+							itemValue="#{tipo}" itemLabel="#{tipo.label}" />
+					</p:selectOneMenu>
+				</p:panelGrid>
+				<h:commandButton value="#{messages['crud.create']}" action="#{usuarioView.create()}"/>
+			</h:form>
+		</p:panel>
+		<p:panel>
+			<p:dataTable id="usuarioList" var="usuario"
+				value="#{usuarioDAO.listAll()}">
+				<p:column headerText="#{messages['usuario.nome']}">
+					<h:outputText value="#{usuario.nome}" />
+				</p:column>
+				<p:column headerText="#{messages['usuario.email']}">
+					<h:outputText value="#{usuario.email}" />
+				</p:column>
+				<p:column headerText="#{messages['usuario.tipo']}">
+					<h:outputText value="#{usuario.tipo.label}" />
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+	</ui:define>
+</ui:composition>
+</html>
