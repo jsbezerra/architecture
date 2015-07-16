@@ -25,6 +25,7 @@ public class Usuario {
 	@NotNull
 	private String nome;
 	
+	// TODO realizar verificação do formato do e-mail
 	@Column(name="email", nullable=false, unique=true)
 	@NotNull
 	private String email;
