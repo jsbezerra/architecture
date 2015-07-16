@@ -10,7 +10,7 @@ import javax.inject.Named;
 public class ThemesBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private String theme = "cupertino";
+	private String theme = "sunny";
 	
 	public String getTheme(){
 		return theme;
