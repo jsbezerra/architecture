@@ -35,23 +35,38 @@
 					</p:selectOneMenu>
 				</p:panelGrid>
 				<p:commandButton value="#{messages['crud.create']}"
-					action="#{usuarioView.create()}" update="@form :usuarioList" />
+					action="#{usuarioView.create()}"
+					update="@form :usuarioListForm:usuarioList" rendered="#{!usuarioView.persisted}"/>
+				<p:commandButton value="#{messages['crud.update']}"
+					action="#{usuarioView.update()}"
+					update="@form :usuarioListForm:usuarioList" rendered="#{usuarioView.persisted}"/>
+				<p:commandButton value="#{messages['crud.new']}"
+					action="#{usuarioView.newInstance()}"
+					update="@form :usuarioListForm:usuarioList" rendered="#{usuarioView.persisted}"/>
 			</h:form>
 		</p:panel>
 		<p:separator />
 		<p:panel>
-			<p:dataTable id="usuarioList" var="usuario"
-				value="#{usuarioDAO.listAll()}">
-				<p:column headerText="#{messages['usuario.nome']}">
-					<h:outputText value="#{usuario.nome}" />
-				</p:column>
-				<p:column headerText="#{messages['usuario.email']}">
-					<h:outputText value="#{usuario.email}" />
-				</p:column>
-				<p:column headerText="#{messages['usuario.tipo']}">
-					<h:outputText value="#{usuario.tipo.label}" />
-				</p:column>
-			</p:dataTable>
+			<h:form id="usuarioListForm">
+				<p:dataTable id="usuarioList" var="usuario"
+					value="#{usuarioDAO.listAll()}">
+					<p:column>
+						<p:commandButton action="#{usuarioView.setEntity(usuario)}"
+							id="iconOnly" icon="ui-icon-disk"
+							title="#{messages['crud.select']}" process="@this"
+							update=":usuarioCrud" />
+					</p:column>
+					<p:column headerText="#{messages['usuario.nome']}">
+						<h:outputText value="#{usuario.nome}" />
+					</p:column>
+					<p:column headerText="#{messages['usuario.email']}">
+						<h:outputText value="#{usuario.email}" />
+					</p:column>
+					<p:column headerText="#{messages['usuario.tipo']}">
+						<h:outputText value="#{usuario.tipo.label}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
 		</p:panel>
 	</ui:define>
 </ui:composition>
