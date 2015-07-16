@@ -36,20 +36,26 @@
 				</p:panelGrid>
 				<p:commandButton value="#{messages['crud.create']}"
 					action="#{usuarioView.create()}"
-					update="@form :usuarioListForm:usuarioList" rendered="#{!usuarioView.persisted}"/>
+					update="@form :usuarioListForm:usuarioList"
+					rendered="#{!usuarioView.persisted}" />
 				<p:commandButton value="#{messages['crud.update']}"
 					action="#{usuarioView.update()}"
-					update="@form :usuarioListForm:usuarioList" rendered="#{usuarioView.persisted}"/>
+					update="@form :usuarioListForm:usuarioList"
+					rendered="#{usuarioView.persisted}" />
 				<p:commandButton value="#{messages['crud.new']}"
 					action="#{usuarioView.newInstance()}"
-					update="@form :usuarioListForm:usuarioList" rendered="#{usuarioView.persisted}"/>
+					update="@form :usuarioListForm:usuarioList"
+					rendered="#{usuarioView.persisted}" />
 			</h:form>
 		</p:panel>
 		<p:separator />
 		<p:panel>
 			<h:form id="usuarioListForm">
 				<p:dataTable id="usuarioList" var="usuario"
-					value="#{usuarioDAO.listAll()}">
+					value="#{usuarioDAO.listAll()}" rows="10" paginator="true">
+					<f:facet name="header">
+						#{messages['usuariocrud.datatable']}
+					</f:facet>
 					<p:column>
 						<p:commandButton action="#{usuarioView.setEntity(usuario)}"
 							id="iconOnly" icon="ui-icon-disk"
