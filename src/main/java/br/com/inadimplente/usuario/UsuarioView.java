@@ -20,7 +20,7 @@ public class UsuarioView extends AbstractView<Usuario> {
 	private UsuarioDAO usuarioDAO;
 	
 	@SuppressWarnings("unchecked")
-	public UsuarioDAO getDao() {
+	protected UsuarioDAO getDao() {
 		return usuarioDAO;
 	}
 	
