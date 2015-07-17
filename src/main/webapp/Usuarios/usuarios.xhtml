@@ -21,6 +21,12 @@
 					<p:watermark for="nome"
 						value="#{messages['usuario.nome.watermark']}" />
 
+					<h:outputText value="#{messages['usuariocrud.login']}" />
+					<p:inputText id="login" value="#{usuarioView.entity.login}"
+						required="true" />
+					<p:watermark for="login"
+						value="#{messages['usuario.login.watermark']}" />
+
 					<h:outputText value="#{messages['usuariocrud.email']}" />
 					<p:inputText id="email" value="#{usuarioView.entity.email}"
 						required="true" />

@@ -12,25 +12,29 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="usuarios")
+@Table(name = "usuarios")
 public class Usuario {
-	
+
 	@Id
-	@SequenceGenerator(name="UsuariosGenerator", sequenceName="sq_usuarios", allocationSize=1, initialValue=1)
-	@GeneratedValue(generator="UsuariosGenerator", strategy=GenerationType.SEQUENCE)
-	@Column(name="id")
+	@SequenceGenerator(name = "UsuariosGenerator", sequenceName = "sq_usuarios", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "UsuariosGenerator", strategy = GenerationType.SEQUENCE)
+	@Column(name = "id")
 	private Integer id;
-	
-	@Column(name="nome", nullable=false, unique=false)
+
+	@Column(name = "nome", nullable = false, unique = false)
 	@NotNull
 	private String nome;
-	
+
+	@Column(name = "login", nullable = false, unique = true)
+	@NotNull
+	private String login;
+
 	// TODO realizar verificação do formato do e-mail
-	@Column(name="email", nullable=false, unique=true)
+	@Column(name = "email", nullable = false, unique = true)
 	@NotNull
 	private String email;
-	
-	@Column(name="tipo", nullable=false, unique=false)
+
+	@Column(name = "tipo", nullable = false, unique = false)
 	@Enumerated(EnumType.STRING)
 	@NotNull
 	private TipoUsuario tipo;
@@ -51,6 +55,14 @@ public class Usuario {
 		this.nome = nome;
 	}
 
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -67,6 +79,4 @@ public class Usuario {
 		this.tipo = tipo;
 	}
 
-	
-	
 }
