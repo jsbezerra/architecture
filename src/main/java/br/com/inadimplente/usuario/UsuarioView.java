@@ -5,10 +5,14 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.inadimplente.kernel.AbstractView;
+import br.com.inadimplente.security.UserRegistrator;
 
 @Named
 @ViewScoped
 public class UsuarioView extends AbstractView<Usuario> {
+	
+	@Inject
+	private UserRegistrator userRegistrator;
 
 	public UsuarioView() {
 		super(Usuario.class);
@@ -26,6 +30,12 @@ public class UsuarioView extends AbstractView<Usuario> {
 	
 	public TipoUsuario[] getTiposDeUsuarios() {
 		return TipoUsuario.values();
+	}
+	
+	@Override
+	public void create() {
+		super.create();
+		userRegistrator.register(getEntity());
 	}
 
 }

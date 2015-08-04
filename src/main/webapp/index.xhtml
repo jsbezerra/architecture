@@ -12,16 +12,18 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
-			<p:panelGrid columns="2" >
+			<p:panelGrid columns="2">
 				<h:outputText value="#{messages['user.name']}" />
-				<p:inputText id="userName" value="#{user.name}" required="true"
+				<p:inputText id="userName" value="#{loginCredentials.userId}"
+					required="true"
 					requiredMessage="#{messages['user.name.validation']}" />
 
 				<h:outputText value="#{messages['user.password']}" />
-				<p:password id="password" value="#{user.password}" required="true"
+				<p:password id="password" value="#{loginCredentials.password}"
+					required="true"
 					requiredMessage="#{messages['user.password.validation']}" />
 				<p:commandButton value="#{messages['application.login']}"
-					action="home?faces-redirect=true" ajax="false"/>
+					action="#{loginView.login()}" ajax="false" />
 			</p:panelGrid>
 		</h:form>
 	</ui:define>

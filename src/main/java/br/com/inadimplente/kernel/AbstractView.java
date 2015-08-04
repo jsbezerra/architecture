@@ -52,7 +52,6 @@ public abstract class AbstractView<T> implements Serializable {
 			// TODO Criar o Log da aplicação
 			exception.printStackTrace();
 		}
-		newInstance();
 	}
 
 	public void update() {

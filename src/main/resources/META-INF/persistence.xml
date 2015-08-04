@@ -5,6 +5,21 @@
 	<persistence-unit name="inadimplentes">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:/InadimplentesDS</jta-data-source>
+		<class>org.picketlink.idm.jpa.model.sample.simple.PartitionTypeEntity</class>
+		<class>org.picketlink.idm.jpa.model.sample.simple.AccountTypeEntity</class>
+		<class>org.picketlink.idm.jpa.model.sample.simple.RelationshipTypeEntity</class>
+		<class>org.picketlink.idm.jpa.model.sample.simple.AttributedTypeEntity</class>
+		<class>org.picketlink.idm.jpa.model.sample.simple.AttributeTypeEntity</class>
+		<class>org.picketlink.idm.jpa.model.sample.simple.AbstractCredentialTypeEntity</class>
+		<class>org.picketlink.idm.jpa.model.sample.simple.X509CredentialTypeEntity</class>
+		<class>org.picketlink.idm.jpa.model.sample.simple.GroupTypeEntity</class>
+		<class>org.picketlink.idm.jpa.model.sample.simple.OTPCredentialTypeEntity</class>
+		<class>org.picketlink.idm.jpa.model.sample.simple.TokenCredentialTypeEntity</class>
+		<class>org.picketlink.idm.jpa.model.sample.simple.RoleTypeEntity</class>
+		<class>org.picketlink.idm.jpa.model.sample.simple.PasswordCredentialTypeEntity</class>
+		<class>org.picketlink.idm.jpa.model.sample.simple.RelationshipIdentityTypeEntity</class>
+		<class>org.picketlink.idm.jpa.model.sample.simple.IdentityTypeEntity</class>
+		<class>org.picketlink.idm.jpa.model.sample.simple.DigestCredentialTypeEntity</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />

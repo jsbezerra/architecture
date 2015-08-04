@@ -7,22 +7,22 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:form id="menuForm">
 	<p:menubar>
-		<p:menuitem value="#{messages['menu.cadastros']}" url="/Cadastros/cadastros.xhtml" disabled="false"/>
-		<p:menuitem value="#{messages['menu.modelos']}" url="#" disabled="false"/>
-		<p:menuitem value="#{messages['menu.relatorios']}" url="#" disabled="false"/>
+		<p:menuitem value="#{messages['menu.cadastros']}"
+			url="/Cadastros/cadastros.xhtml" disabled="false" />
+		<p:menuitem value="#{messages['menu.modelos']}" url="#"
+			disabled="false" />
+		<p:menuitem value="#{messages['menu.relatorios']}" url="#"
+			disabled="false" />
 		<p:submenu label="#{messages['menu.admin']}">
 			<p:menuitem value="#{messages['menu.admin.usuarios']}"
 				url="/Usuarios/usuarios.xhtml" />
-			<p:menuitem value="#{messages['menu.webservice']}" url="#" disabled="false"/>
-			<p:menuitem value="#{messages['menu.suporte']}" url="#" disabled="false"/>
+			<p:menuitem value="#{messages['menu.webservice']}" url="#"
+				disabled="false" />
+			<p:menuitem value="#{messages['menu.suporte']}" url="#"
+				disabled="false" />
 		</p:submenu>
-		<f:facet name="options">
-			<p:inputText style="margin-right:10px"
-				placeholder="#{messages['application.search']}" rendered="false"/>
-			<p:commandButton type="button"
-				value="#{messages['application.logout']}" icon="ui-icon-extlink"
-				action="index?faces-redirect=false" ajax="false" update="@form" />
-		</f:facet>
+		<p:menuitem value="#{messages['application.logout']}"
+			action="#{loginView.logout()}" />
 	</p:menubar>
 </h:form>
 </html>
