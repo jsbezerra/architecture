@@ -6,8 +6,11 @@ import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
+import org.slf4j.Logger;
+
 import br.com.inadimplente.utils.EntityUtils;
 
+//TODO internacionalização
 @ViewScoped
 public abstract class AbstractView<T> implements Serializable {
 
@@ -16,6 +19,7 @@ public abstract class AbstractView<T> implements Serializable {
 
 	@Inject
 	private MessagesHandler messagesHandler;
+	@Inject Logger logger;
 
 	protected abstract <D extends AbstractDAO<T>> D getDao();
 
@@ -30,8 +34,7 @@ public abstract class AbstractView<T> implements Serializable {
 		try {
 			this.entity = entityClass.newInstance();
 		} catch (InstantiationException | IllegalAccessException e) {
-			// TODO Criar o Log da aplicação
-			e.printStackTrace();
+			logger.error("Não foi possível intanciar uma nova entidade", e);
 		}
 	}
 
@@ -47,22 +50,19 @@ public abstract class AbstractView<T> implements Serializable {
 		try {
 			getDao().create(getEntity());
 			messagesHandler.info("#{messages['crud.success.create']}");
-		} catch (Exception exception) {
+		} catch (Exception e) {
 			getMessagesHandler().error("#{messages['crud.error.create']}");
-			// TODO Criar o Log da aplicação
-			exception.printStackTrace();
+			logger.error("Não foi possível criar a entidade", e);
 		}
-		newInstance();
 	}
 
 	public void update() {
 		try {
 			getDao().update(entity);
 			messagesHandler.info("#{messages['crud.success.update']}");
-		} catch (Exception exception) {
+		} catch (Exception e) {
 			getMessagesHandler().error("#{messages['crud.error.update']}");
-			// TODO Criar o Log da aplicação
-			exception.printStackTrace();
+			logger.error("Não foi possível salvar as modificações na entidade", e);
 		}
 	}
 
@@ -70,10 +70,9 @@ public abstract class AbstractView<T> implements Serializable {
 		try {
 			getDao().delete(entity);
 			messagesHandler.info("#{messages['crud.success.delete']}");
-		} catch (Exception exception) {
+		} catch (Exception e) {
 			getMessagesHandler().error("#{messages['crud.error.delete']}");
-			// TODO Criar o Log da aplicação
-			exception.printStackTrace();
+			logger.error("Não foi possível deletar a entidade", e);
 		}
 	}
 
