@@ -1,4 +1,4 @@
-package br.com.inadimplente.kernel;
+package br.com.inadimplente.kernel.producer;
 
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Default;
