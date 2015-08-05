@@ -13,7 +13,7 @@
 	<ui:define name="content">
 		<p:panel id="usuarioCrud" toggleable="true" closable="true">
 			<h:form>
-				<p:growl id="growl" sticky="true" showDetail="true" />
+				<p:growl id="growl" life="6000" showDetail="true" />
 				<p:panelGrid columns="3">
 					<h:outputText value="#{messages['usuariocrud.nome']}" />
 					<p:inputText id="nome" value="#{usuarioView.entity.nome}"

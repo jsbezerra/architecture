@@ -12,12 +12,12 @@ public class UsuarioView extends AbstractView<Usuario> {
 
 	private static final long serialVersionUID = 1L;
 
+	@Inject
+	private UsuarioDAO usuarioDAO;
+
 	public UsuarioView() {
 		super(Usuario.class);
 	}
-
-	@Inject
-	private UsuarioDAO usuarioDAO;
 	
 	@SuppressWarnings("unchecked")
 	protected UsuarioDAO getDao() {
