@@ -10,6 +10,7 @@ import javax.inject.Named;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 
@@ -29,9 +30,11 @@ public class LoginController {
 		Subject currentUser = SecurityUtils.getSubject();
 		try {
 			currentUser.login(token);
+		//TODO lidar com a internacionalização
+		} catch (UnknownAccountException exception) {
+			LOG.log(Level.SEVERE, "Usuário não encontrado");
 		} catch (AuthenticationException e) {
 			LOG.log(Level.SEVERE, e.getMessage());
-			//TODO consertar isso aqui
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário ou Senha inválidos", ""));
 			return "/index";
@@ -40,7 +43,8 @@ public class LoginController {
 	}
 
 	public String logout() {
-		return "";
+		SecurityUtils.getSubject().logout();
+		return "/index";
 	}
 
 	public String getUsername() {
