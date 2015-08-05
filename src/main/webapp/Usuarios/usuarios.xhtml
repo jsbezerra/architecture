@@ -51,7 +51,7 @@
 				<p:commandButton value="#{messages['crud.new']}"
 					action="#{usuarioView.newInstance()}"
 					update="@form :usuarioListForm:usuarioList"
-					rendered="#{usuarioView.persisted}" />
+					rendered="#{usuarioView.persisted}" process="@this"/>
 			</h:form>
 		</p:panel>
 		<p:separator />
