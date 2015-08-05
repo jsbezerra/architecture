@@ -19,7 +19,8 @@ public abstract class AbstractView<T> implements Serializable {
 
 	@Inject
 	private MessagesHandler messagesHandler;
-	@Inject Logger logger;
+	@Inject 
+	private Logger logger;
 
 	protected abstract <D extends AbstractDAO<T>> D getDao();
 
@@ -81,7 +82,7 @@ public abstract class AbstractView<T> implements Serializable {
 	}
 
 	public boolean isPersisted() {
-		return (EntityUtils.getId(entity, entityClass) != null);
+		return EntityUtils.getId(entity, entityClass) != null;
 	}
 
 }
