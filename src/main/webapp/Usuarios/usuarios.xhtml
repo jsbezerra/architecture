@@ -14,44 +14,46 @@
 		<p:panel id="usuarioCrud" toggleable="true" closable="true">
 			<h:form>
 				<p:growl id="growl" life="6000" showDetail="true" />
-				<p:panelGrid columns="3">
-					<h:outputText value="#{messages['usuariocrud.nome']}" />
+				<h:panelGrid columns="3">
+					<h:outputLabel for="nome" value="#{messages['usuariocrud.nome']}" />
 					<p:inputText id="nome" value="#{usuarioView.entity.nome}"
 						required="true" />
 					<p:watermark for="nome"
 						value="#{messages['usuario.nome.watermark']}" />
 
-					<h:outputText value="#{messages['usuariocrud.login']}" />
+					<h:outputLabel for="login" value="#{messages['usuariocrud.login']}" />
 					<p:inputText id="login" value="#{usuarioView.entity.login}"
 						required="true" />
 					<p:watermark for="login"
 						value="#{messages['usuario.login.watermark']}" />
 
-					<h:outputText value="#{messages['usuariocrud.email']}" />
+					<h:outputLabel for="email" value="#{messages['usuariocrud.email']}" />
 					<p:inputText id="email" value="#{usuarioView.entity.email}"
 						required="true" />
 					<p:watermark for="email"
 						value="#{messages['usuario.email.watermark']}" />
 
-					<h:outputText value="#{messages['usuariocrud.tipo']}" />
+					<h:outputLabel for="tipo" value="#{messages['usuariocrud.tipo']}" />
 					<p:selectOneMenu id="tipo" value="#{usuarioView.entity.tipo}"
 						required="false">
 						<f:selectItems value="#{usuarioView.tiposDeUsuarios}" var="tipo"
 							itemValue="#{tipo}" itemLabel="#{tipo.label}" />
 					</p:selectOneMenu>
-				</p:panelGrid>
-				<p:commandButton value="#{messages['crud.create']}"
-					action="#{usuarioView.create()}"
-					update="@form :usuarioListForm:usuarioList"
-					rendered="#{!usuarioView.persisted}" />
-				<p:commandButton value="#{messages['crud.update']}"
-					action="#{usuarioView.update()}"
-					update="@form :usuarioListForm:usuarioList"
-					rendered="#{usuarioView.persisted}" />
-				<p:commandButton value="#{messages['crud.new']}"
-					action="#{usuarioView.newInstance()}"
-					update="@form :usuarioListForm:usuarioList"
-					rendered="#{usuarioView.persisted}" process="@this"/>
+					<f:facet name="footer">
+						<p:commandButton value="#{messages['crud.create']}"
+							action="#{usuarioView.create()}"
+							update="@form :usuarioListForm:usuarioList"
+							rendered="#{!usuarioView.persisted}" />
+						<p:commandButton value="#{messages['crud.update']}"
+							action="#{usuarioView.update()}"
+							update="@form :usuarioListForm:usuarioList"
+							rendered="#{usuarioView.persisted}" />
+						<p:commandButton value="#{messages['crud.new']}"
+							action="#{usuarioView.newInstance()}"
+							update="@form :usuarioListForm:usuarioList"
+							rendered="#{usuarioView.persisted}" process="@this" />
+					</f:facet>
+				</h:panelGrid>
 			</h:form>
 		</p:panel>
 		<p:separator />
