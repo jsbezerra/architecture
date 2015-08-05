@@ -16,7 +16,8 @@ import javax.inject.Named;
  * */
 
 @Named
-@Dependent //TODO Verificar um melhor escopo para este componente
+@Dependent 
+//TODO Verificar um melhor escopo para este componente
 public class MessagesHandler implements Serializable {
 
 	private static final long serialVersionUID = 1L;

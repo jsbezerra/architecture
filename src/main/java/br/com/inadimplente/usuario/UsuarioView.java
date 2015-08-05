@@ -10,11 +10,11 @@ import br.com.inadimplente.kernel.AbstractView;
 @ViewScoped
 public class UsuarioView extends AbstractView<Usuario> {
 
+	private static final long serialVersionUID = 1L;
+
 	public UsuarioView() {
 		super(Usuario.class);
 	}
-
-	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private UsuarioDAO usuarioDAO;
