@@ -32,9 +32,9 @@ public class LoginController {
 			currentUser.login(token);
 		//TODO lidar com a internacionalização
 		} catch (UnknownAccountException exception) {
-			LOG.log(Level.SEVERE, "Usuário não encontrado");
+			LOG.log(Level.SEVERE, "Usuário não encontrado", exception);
 		} catch (AuthenticationException e) {
-			LOG.log(Level.SEVERE, e.getMessage());
+			LOG.log(Level.SEVERE, e.getMessage(), e);
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário ou Senha inválidos", ""));
 			return "/index";
