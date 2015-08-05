@@ -34,6 +34,7 @@ public class Usuario {
 	@NotNull
 	private String email;
 	
+	//TODO adicionar Salt
 	@Column(name = "password", nullable = false, unique=false)
 	private String password;
 
