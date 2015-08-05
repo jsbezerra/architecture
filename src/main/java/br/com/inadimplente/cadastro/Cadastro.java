@@ -17,7 +17,7 @@ public class Cadastro {
 	@SequenceGenerator(name="CadastrosGenerator", sequenceName="sq_cadastros", allocationSize=1, initialValue=1)
 	@GeneratedValue(generator="CadastrosGenerator", strategy=GenerationType.SEQUENCE)
 	@Column(name="codigo")
-	private Integer codigo;
+	private Long codigo;
 
 	@Column(name="nome", nullable=false)
 	@NotNull
@@ -27,11 +27,11 @@ public class Cadastro {
 	@NotNull
 	private Boolean situacao;
 
-	public Integer getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 

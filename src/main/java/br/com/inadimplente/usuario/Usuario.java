@@ -19,7 +19,7 @@ public class Usuario {
 	@SequenceGenerator(name = "UsuariosGenerator", sequenceName = "sq_usuarios", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "UsuariosGenerator", strategy = GenerationType.SEQUENCE)
 	@Column(name = "id")
-	private Integer id;
+	private Long id;
 
 	@Column(name = "nome", nullable = false, unique = false)
 	@NotNull
@@ -39,11 +39,11 @@ public class Usuario {
 	@NotNull
 	private TipoUsuario tipo;
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
