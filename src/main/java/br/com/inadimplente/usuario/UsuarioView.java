@@ -4,6 +4,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.shiro.crypto.hash.Sha256Hash;
+
 import br.com.inadimplente.kernel.AbstractView;
 
 @Named
@@ -26,6 +28,12 @@ public class UsuarioView extends AbstractView<Usuario> {
 	
 	public TipoUsuario[] getTiposDeUsuarios() {
 		return TipoUsuario.values();
+	}
+	
+	@Override
+	public void create() {
+		getEntity().setPassword(new Sha256Hash("secret").toHex());
+		super.create();
 	}
 
 }
