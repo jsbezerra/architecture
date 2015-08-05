@@ -11,17 +11,53 @@
 		#{messages['cadastropage.title']}
 	</ui:define>
 	<ui:define name="content">
-		<p:dataTable id="cadastrosList" var="cadastro" value="#{cadastroDAO.listAll()}">
-			<p:column headerText="#{messages['cadastro.codigo']}">
-				<h:outputText value="#{cadastro.codigo}" />
-			</p:column>
-			<p:column headerText="#{messages['cadastro.nome']}">
-				<h:outputText value="#{cadastro.nome}" />
-			</p:column>
-			<p:column headerText="#{messages['cadastro.situacao']}">
-				<h:outputText value="#{cadastro.situacao}" />
-			</p:column>
-		</p:dataTable>
+		<p:growl id="growl" life="6000" showDetail="true" />
+		<p:panel id="cadastroCrud" toggleable="true" closable="true">
+			<h:form>
+				<p:panelGrid columns="2">
+					<h:outputText value="#{messages['cadastrocrud.codigo']}" />
+					<p:inputText id="login" value="#{cadastroView.entity.codigo}"
+						required="true" disabled="true" />
+
+					<h:outputText value="#{messages['cadastrocrud.nome']}" />
+					<p:inputText id="nome" value="#{cadastroView.entity.nome}"
+						required="true" disabled="true" />
+
+					<h:outputText value="#{messages['cadastrocrud.situacao']}" />
+					<p:selectBooleanButton id="situacao"
+						value="#{cadastroView.entity.situacao}" onLabel="Ativo"
+						offLabel="Inativo" disabled="#{!cadastroView.persisted}" />
+				</p:panelGrid>
+				<p:commandButton value="#{messages['crud.update']}"
+					action="#{cadastroView.update()}"
+					update="@form :cadastroListForm:cadastroList"
+					rendered="#{cadastroView.persisted}" />
+			</h:form>
+		</p:panel>
+		<p:separator />
+		<h:form id="cadastroListForm">
+			<p:dataTable id="cadastroList" var="cadastro"
+				value="#{cadastroDAO.listAll()}">
+				<f:facet name="header">
+					#{messages['cadastrocrud.datatable']}
+				</f:facet>
+				<p:column>
+					<p:commandButton action="#{cadastroView.setEntity(cadastro)}"
+						id="iconOnly" icon="ui-icon-disk"
+						title="#{messages['crud.select']}" process="@this"
+						update=":cadastroCrud" />
+				</p:column>
+				<p:column headerText="#{messages['cadastro.codigo']}">
+					<h:outputText value="#{cadastro.codigo}" />
+				</p:column>
+				<p:column headerText="#{messages['cadastro.nome']}">
+					<h:outputText value="#{cadastro.nome}" />
+				</p:column>
+				<p:column headerText="#{messages['cadastro.situacao']}">
+					<h:outputText value="#{cadastro.situacao}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

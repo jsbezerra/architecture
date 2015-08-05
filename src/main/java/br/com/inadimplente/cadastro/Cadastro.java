@@ -10,22 +10,34 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="cadastros")
+@Table(name = "cadastros")
 public class Cadastro {
 
 	@Id
-	@SequenceGenerator(name="CadastrosGenerator", sequenceName="sq_cadastros", allocationSize=1, initialValue=1)
-	@GeneratedValue(generator="CadastrosGenerator", strategy=GenerationType.SEQUENCE)
-	@Column(name="codigo")
+	@SequenceGenerator(name = "CadastrosGenerator", sequenceName = "sq_cadastros", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "CadastrosGenerator", strategy = GenerationType.SEQUENCE)
+	@Column(name = "id")
+	private Long id;
+
+	@Column(name = "codigo", nullable = false, unique = true)
+	@NotNull
 	private Long codigo;
 
-	@Column(name="nome", nullable=false)
+	@Column(name = "nome", nullable = false)
 	@NotNull
 	private String nome;
-	
-	@Column(name="situacao", nullable=false)
+
+	@Column(name = "situacao", nullable = false)
 	@NotNull
 	private Boolean situacao;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Long getCodigo() {
 		return codigo;
