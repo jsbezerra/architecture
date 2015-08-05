@@ -14,14 +14,14 @@
 		<h:form>
 			<p:panelGrid columns="2" >
 				<h:outputText value="#{messages['user.name']}" />
-				<p:inputText id="userName" value="#{user.name}" required="true"
+				<p:inputText id="userName" value="#{loginController.username}" required="true"
 					requiredMessage="#{messages['user.name.validation']}" />
 
 				<h:outputText value="#{messages['user.password']}" />
-				<p:password id="password" value="#{user.password}" required="true"
+				<p:password id="password" value="#{loginController.password}" required="true"
 					requiredMessage="#{messages['user.password.validation']}" />
 				<p:commandButton value="#{messages['application.login']}"
-					action="home?faces-redirect=true" ajax="false"/>
+					action="#{loginController.login()}" ajax="false"/>
 			</p:panelGrid>
 		</h:form>
 	</ui:define>
