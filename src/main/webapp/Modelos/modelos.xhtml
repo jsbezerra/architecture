@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/menu.xhtml">
+	<ui:define name="title">
+		#{messages['modelopage.title']}
+	</ui:define>
+	<ui:define name="content">
+		<p:panel id="modeloCrud" toggleable="true" closable="true">
+			<h:form>
+				<p:growl id="growl" life="6000" />
+				<h:panelGrid columns="2">
+					<p:outputLabel for="cadastro"
+						value="#{messages['modelocrud.cadastro']}" />
+					<p:inputText id="cadastro" value="#{modeloView.entity.cadastro}"
+						required="true" />
+
+					<p:outputLabel for="mensagem"
+						value="#{messages['modelocrud.mensagem']}" />
+					<p:inputText id="mensagem" value="#{modeloView.entity.mensagem}"
+						required="true" />
+
+					<p:outputLabel for="prazo" value="#{messages['modelocrud.prazo']}" />
+					<p:inputText id="prazo" value="#{modeloView.entity.prazo}" required="true">
+						<f:validateDoubleRange minimum="1" maximum="365" />
+					</p:inputText>
+					<f:facet name="footer">
+						<p:commandButton value="#{messages['crud.create']}"
+							action="#{modeloView.create()}"
+							update="@form :modeloListForm:modeloList"
+							rendered="#{!modeloView.persisted}" />
+						<p:commandButton value="#{messages['crud.update']}"
+							action="#{modeloView.update()}"
+							update="@form :modeloListForm:modeloList"
+							rendered="#{modeloView.persisted}" />
+						<p:commandButton value="#{messages['crud.new']}"
+							action="#{modeloView.newInstance()}"
+							update="@form :modeloListForm:modeloList"
+							rendered="#{modeloView.persisted}" process="@this" />
+					</f:facet>
+				</h:panelGrid>
+			</h:form>
+		</p:panel>
+		<p:separator />
+		<h:form id="modeloListForm">
+			<p:dataTable id="modeloList" var="modelo"
+				value="#{modeloDAO.listAll()}">
+				<f:facet name="header">
+					#{messages['modelocrud.datatable']}
+				</f:facet>
+				<p:column>
+					<p:commandButton action="#{modeloView.setEntity(modelo)}"
+						id="iconOnly" icon="ui-icon-disk"
+						title="#{messages['crud.select']}" process="@this"
+						update=":modeloCrud" />
+				</p:column>
+				<p:column headerText="#{messages['modelo.cadastro']}">
+					<h:outputText value="#{modelo.cadastro}" />
+				</p:column>
+				<p:column headerText="#{messages['modelo.mensagem']}">
+					<h:outputText value="#{modelo.mensagem}" />
+				</p:column>
+				<p:column headerText="#{messages['modelo.prazo']}">
+					<h:outputText value="#{modelo.prazo}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

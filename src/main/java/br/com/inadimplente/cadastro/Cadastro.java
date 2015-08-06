@@ -62,5 +62,10 @@ public class Cadastro {
 	public void setSituacao(Boolean situacao) {
 		this.situacao = situacao;
 	}
+	
+	@Override
+	public String toString() {
+		return getCodigo().toString();
+	}
 
 }

@@ -2,9 +2,11 @@ package br.com.inadimplente.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -23,8 +25,8 @@ public class Modelo {
 	@Column(name="id")
 	private Long id;
 	
-	@OneToOne
-	@Column(name="cadastro", nullable=false, unique=true)
+	@OneToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="cadastro", unique=true, nullable=false)
 	@NotNull
 	private Cadastro cadastro;
 	

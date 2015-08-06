@@ -11,9 +11,9 @@
 		#{messages['cadastropage.title']}
 	</ui:define>
 	<ui:define name="content">
-		<p:growl id="growl" life="6000" showDetail="true" />
 		<p:panel id="cadastroCrud" toggleable="true" closable="true">
 			<h:form>
+				<p:growl id="growl" life="6000" showDetail="true" />
 				<h:panelGrid columns="2">
 					<p:outputLabel for="login"
 						value="#{messages['cadastrocrud.codigo']}" />

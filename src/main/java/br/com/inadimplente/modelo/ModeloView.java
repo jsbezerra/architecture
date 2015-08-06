@@ -1,9 +1,11 @@
 package br.com.inadimplente.modelo;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.com.inadimplente.kernel.AbstractView;
 
+@Named
 public class ModeloView extends AbstractView<Modelo> {
 
 	private static final long serialVersionUID = 1L;
