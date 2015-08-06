@@ -13,8 +13,8 @@ public class WebServiceDAO extends AbstractDAO<WebService> {
 	@Inject
 	private Logger logger;
 
-	public WebServiceDAO(Class<WebService> entityClass) {
-		super(entityClass);
+	public WebServiceDAO() {
+		super(WebService.class);
 	}
 
 	@Override

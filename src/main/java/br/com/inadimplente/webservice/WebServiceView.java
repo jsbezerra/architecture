@@ -11,8 +11,8 @@ public class WebServiceView extends AbstractView<WebService> {
 	@Inject
 	private WebServiceDAO webServiceDAO;
 	
-	public WebServiceView(Class<WebService> entityClass) {
-		super(entityClass);
+	public WebServiceView() {
+		super(WebService.class);
 	}
 
 	@SuppressWarnings("unchecked")

@@ -13,8 +13,8 @@ public class EmailSuporteView extends AbstractView<EmailSuporte> {
 	@Inject
 	private EmailSuporteDAO emailSuporteDAO;
 
-	public EmailSuporteView(Class<EmailSuporte> entityClass) {
-		super(entityClass);
+	public EmailSuporteView() {
+		super(EmailSuporte.class);
 	}
 
 	@SuppressWarnings("unchecked")

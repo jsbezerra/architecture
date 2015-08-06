@@ -13,8 +13,8 @@ public class EmailSuporteDAO extends AbstractDAO<EmailSuporte> {
 	@Inject
 	private Logger logger;
 	
-	public EmailSuporteDAO(Class<EmailSuporte> entityClass) {
-		super(entityClass);
+	public EmailSuporteDAO() {
+		super(EmailSuporte.class);
 	}
 	
 	@Override
