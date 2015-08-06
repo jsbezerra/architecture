@@ -15,25 +15,25 @@
 			<h:form>
 				<p:growl id="growl" life="6000" showDetail="true" />
 				<h:panelGrid columns="3">
-					<h:outputLabel for="nome" value="#{messages['usuariocrud.nome']}" />
+					<p:outputLabel for="nome" value="#{messages['usuariocrud.nome']}" />
 					<p:inputText id="nome" value="#{usuarioView.entity.nome}"
 						required="true" />
 					<p:watermark for="nome"
 						value="#{messages['usuario.nome.watermark']}" />
 
-					<h:outputLabel for="login" value="#{messages['usuariocrud.login']}" />
+					<p:outputLabel for="login" value="#{messages['usuariocrud.login']}" />
 					<p:inputText id="login" value="#{usuarioView.entity.login}"
 						required="true" />
 					<p:watermark for="login"
 						value="#{messages['usuario.login.watermark']}" />
 
-					<h:outputLabel for="email" value="#{messages['usuariocrud.email']}" />
+					<p:outputLabel for="email" value="#{messages['usuariocrud.email']}" />
 					<p:inputText id="email" value="#{usuarioView.entity.email}"
 						required="true" />
 					<p:watermark for="email"
 						value="#{messages['usuario.email.watermark']}" />
 
-					<h:outputLabel for="tipo" value="#{messages['usuariocrud.tipo']}" />
+					<p:outputLabel for="tipo" value="#{messages['usuariocrud.tipo']}" />
 					<p:selectOneMenu id="tipo" value="#{usuarioView.entity.tipo}"
 						required="false">
 						<f:selectItems value="#{usuarioView.tiposDeUsuarios}" var="tipo"

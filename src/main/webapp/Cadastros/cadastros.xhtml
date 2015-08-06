@@ -15,27 +15,27 @@
 		<p:panel id="cadastroCrud" toggleable="true" closable="true">
 			<h:form>
 				<h:panelGrid columns="2">
-					<h:outputLabel for="login"
+					<p:outputLabel for="login"
 						value="#{messages['cadastrocrud.codigo']}" />
 					<p:inputText id="login" value="#{cadastroView.entity.codigo}"
 						required="true" disabled="true" />
 
-					<h:outputLabel for="nome" value="#{messages['cadastrocrud.nome']}" />
+					<p:outputLabel for="nome" value="#{messages['cadastrocrud.nome']}" />
 					<p:inputText id="nome" value="#{cadastroView.entity.nome}"
 						required="true" disabled="true" />
 
-					<h:outputLabel for="situacao"
+					<p:outputLabel for="situacao"
 						value="#{messages['cadastrocrud.situacao']}" />
 					<p:selectBooleanButton id="situacao"
 						value="#{cadastroView.entity.situacao}" onLabel="Ativo"
 						offLabel="Inativo" disabled="#{!cadastroView.persisted}" />
+					<f:facet name="footer">
+						<p:commandButton value="#{messages['crud.update']}"
+							action="#{cadastroView.update()}"
+							update="@form :cadastroListForm:cadastroList"
+							rendered="#{cadastroView.persisted}" />
+					</f:facet>
 				</h:panelGrid>
-				<f:facet name="footer">
-					<p:commandButton value="#{messages['crud.update']}"
-						action="#{cadastroView.update()}"
-						update="@form :cadastroListForm:cadastroList"
-						rendered="#{cadastroView.persisted}" />
-				</f:facet>
 			</h:form>
 		</p:panel>
 		<p:separator />
