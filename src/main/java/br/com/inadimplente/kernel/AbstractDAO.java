@@ -42,7 +42,7 @@ public abstract class AbstractDAO<T> {
 
 	@Transactional(value=REQUIRED)
 	public void delete(T entity) {
-		getEntityManager().remove(entity);
+		getEntityManager().remove(getEntityManager().contains(entity) ? entity : getEntityManager().merge(entity));
 	}
 
 	public T find(Object id) {
