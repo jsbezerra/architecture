@@ -30,6 +30,7 @@ public class LoginController {
 		Subject currentUser = SecurityUtils.getSubject();
 		try {
 			currentUser.login(token);
+			// TODO Colocar as informações do Usuário na sessão
 		//TODO lidar com a internacionalização
 		} catch (UnknownAccountException exception) {
 			LOG.log(Level.SEVERE, "Usuário não encontrado", exception);
