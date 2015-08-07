@@ -7,6 +7,8 @@ import javax.inject.Named;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 
 import br.com.inadimplente.kernel.AbstractView;
+import br.com.inadimplente.mail.MailBean;
+import br.com.inadimplente.mail.MailSender;
 
 @Named
 @ViewScoped
@@ -16,6 +18,8 @@ public class UsuarioView extends AbstractView<Usuario> {
 
 	@Inject
 	private UsuarioDAO usuarioDAO;
+	@Inject
+	private MailSender mailSender;
 
 	public UsuarioView() {
 		super(Usuario.class);
@@ -34,6 +38,11 @@ public class UsuarioView extends AbstractView<Usuario> {
 	public void create() {
 		getEntity().setPassword(new Sha256Hash("secret").toHex());
 		super.create();
+		MailBean mail = new MailBean();
+		mail.setTo(getEntity().getEmail());
+		mail.setSubject("Senha");
+		mail.setContent("Sua nova senha é 'secret'.");
+		mailSender.send(mail);
 	}
 
 }
