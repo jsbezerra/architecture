@@ -70,6 +70,7 @@ public abstract class AbstractView<T> implements Serializable {
 	public void delete() {
 		try {
 			getDao().delete(entity);
+			newInstance();
 			messagesHandler.info("#{messages['crud.success.delete']}");
 		} catch (Exception e) {
 			getMessagesHandler().error("#{messages['crud.error.delete']}");
