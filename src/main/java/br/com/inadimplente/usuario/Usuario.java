@@ -33,6 +33,10 @@ public class Usuario {
 	@Column(name = "email", nullable = false, unique = true)
 	@NotNull
 	private String email;
+	
+	//TODO adicionar Salt
+	@Column(name = "password", nullable = false, unique=false)
+	private String password;
 
 	@Column(name = "tipo", nullable = false, unique = false)
 	@Enumerated(EnumType.STRING)
@@ -69,6 +73,14 @@ public class Usuario {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public TipoUsuario getTipo() {

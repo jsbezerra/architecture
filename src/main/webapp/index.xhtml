@@ -12,17 +12,22 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
-			<p:panelGrid columns="2" >
-				<h:outputText value="#{messages['user.name']}" />
-				<p:inputText id="userName" value="#{user.name}" required="true"
+			<h:panelGrid columns="2" >
+				<p:outputLabel for="userName" value="#{messages['user.name']}" />
+				<p:inputText id="userName" value="#{loginController.username}"
+					required="true"
 					requiredMessage="#{messages['user.name.validation']}" />
 
-				<h:outputText value="#{messages['user.password']}" />
-				<p:password id="password" value="#{user.password}" required="true"
+				<p:outputLabel for="password" value="#{messages['user.password']}" />
+				<p:password id="password" value="#{loginController.password}"
+					required="true"
 					requiredMessage="#{messages['user.password.validation']}" />
-				<p:commandButton value="#{messages['application.login']}"
-					action="home?faces-redirect=true" ajax="false"/>
-			</p:panelGrid>
+
+				<f:facet name="footer">
+					<p:commandButton value="#{messages['application.login']}"
+						action="#{loginController.login()}" ajax="false" />
+				</f:facet>
+			</h:panelGrid>
 		</h:form>
 	</ui:define>
 </ui:composition>

@@ -18,10 +18,10 @@
 		</p:submenu>
 		<f:facet name="options">
 			<p:inputText style="margin-right:10px"
-				placeholder="#{messages['application.search']}" rendered="false"/>
-			<p:commandButton type="button"
-				value="#{messages['application.logout']}" icon="ui-icon-extlink"
-				action="index?faces-redirect=false" ajax="false" update="@form" />
+				placeholder="#{messages['application.search']}" rendered="false" />
+			<p:commandButton value="#{messages['application.logout']}"
+				icon="ui-icon-extlink" action="#{loginController.logout()}"
+				ajax="false" update="@form" />
 		</f:facet>
 	</p:menubar>
 </h:form>
