@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/menu.xhtml">
+	<ui:define name="title">
+		#{messages['webservicepage.title']}
+	</ui:define>
+	<ui:define name="content">
+		<p:panel id="webserviceCrud" toggleable="true" closable="true">
+			<h:form>
+				<p:growl id="growl" life="6000" showDetail="true" showSummary="false"/>
+				<h:panelGrid columns="3">
+					<p:outputLabel for="url" value="#{messages['webservicecrud.url']}" />
+					<p:inputText id="url" value="#{webServiceView.entity.url}"
+						required="true" />
+					<p:watermark for="url"
+						value="#{messages['webservice.url.watermark']}" />
+
+					<p:outputLabel for="login"
+						value="#{messages['webservicecrud.login']}" />
+					<p:inputText id="login" value="#{webServiceView.entity.login}"
+						required="true" />
+					<p:watermark for="login"
+						value="#{messages['webservice.login.watermark']}" />
+
+					<p:outputLabel for="senha"
+						value="#{messages['webservicecrud.senha']}" />
+					<p:inputText id="senha" value="#{webServiceView.entity.senha}"
+						required="true" />
+					<p:watermark for="senha"
+						value="#{messages['webservice.senha.watermark']}" />
+					<f:facet name="footer">
+						<p:commandButton value="#{messages['crud.create']}"
+							action="#{webServiceView.create()}" update="@form"
+							rendered="#{!webServiceView.persisted}" />
+						<p:commandButton value="#{messages['crud.update']}"
+							action="#{webServiceView.update()}" update="@form"
+							rendered="#{webServiceView.persisted}" />
+						<p:commandButton value="#{messages['crud.delete']}"
+							action="#{webServiceView.delete()}" update="@form"
+							rendered="#{webServiceView.persisted}" process="@this" />
+					</f:facet>
+				</h:panelGrid>
+			</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>
+</html>

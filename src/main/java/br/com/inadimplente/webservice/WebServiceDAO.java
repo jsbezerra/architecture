@@ -2,6 +2,8 @@ package br.com.inadimplente.webservice;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
 import org.slf4j.Logger;
 
@@ -9,7 +11,7 @@ import br.com.inadimplente.kernel.AbstractDAO;
 
 @Named
 public class WebServiceDAO extends AbstractDAO<WebService> {
-	
+
 	@Inject
 	private Logger logger;
 
@@ -18,6 +20,7 @@ public class WebServiceDAO extends AbstractDAO<WebService> {
 	}
 
 	@Override
+	@Transactional(value = TxType.REQUIRED)
 	public void create(WebService entity) {
 		if (count() == 0) {
 			super.create(entity);
