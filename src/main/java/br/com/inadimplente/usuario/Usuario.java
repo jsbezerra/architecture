@@ -11,6 +11,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import br.com.inadimplente.validation.annotation.Email;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
@@ -32,6 +34,7 @@ public class Usuario {
 	// TODO realizar verificação do formato do e-mail
 	@Column(name = "email", nullable = false, unique = true)
 	@NotNull
+	@Email
 	private String email;
 	
 	//TODO adicionar Salt

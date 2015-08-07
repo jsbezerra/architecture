@@ -9,6 +9,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import br.com.inadimplente.validation.annotation.Email;
+
 @Entity
 @Table(name="email_suporte")
 public class EmailSuporte {
@@ -22,6 +24,7 @@ public class EmailSuporte {
 	// TODO realizar verificação do formato do e-mail
 	@Column(name = "email", nullable = false, unique = true)
 	@NotNull
+	@Email
 	private String email;
 
 	public Short getId() {
