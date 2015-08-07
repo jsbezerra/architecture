@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/menu.xhtml">
+	<ui:define name="title">
+		#{messages['suportepage.title']}
+	</ui:define>
+	<ui:define name="content">
+		<p:panel id="suporteCrud" toggleable="true" closable="true">
+			<h:form>
+				<p:growl id="growl" life="6000" showDetail="true" showSummary="false"/>
+				<h:panelGrid columns="3">
+					<p:outputLabel for="email" value="#{messages['suportecrud.email']}" />
+					<p:inputText id="email" value="#{emailSuporteView.entity.email}"
+						required="true" />
+					<p:watermark for="email"
+						value="#{messages['suporte.email.watermark']}" />
+					<f:facet name="footer">
+						<p:commandButton value="#{messages['crud.create']}"
+							action="#{emailSuporteView.create()}" update="@form"
+							rendered="#{!emailSuporteView.persisted}" />
+						<p:commandButton value="#{messages['crud.update']}"
+							action="#{emailSuporteView.update()}" update="@form"
+							rendered="#{emailSuporteView.persisted}" />
+						<p:commandButton value="#{messages['crud.delete']}"
+							action="#{emailSuporteView.delete()}" update="@form"
+							rendered="#{emailSuporteView.persisted}" process="@this" />
+					</f:facet>
+				</h:panelGrid>
+			</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>
+</html>

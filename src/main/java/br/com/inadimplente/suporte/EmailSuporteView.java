@@ -1,9 +1,13 @@
 package br.com.inadimplente.suporte;
 
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.inadimplente.kernel.AbstractView;
+import br.com.inadimplente.webservice.WebService;
 
 @Named
 public class EmailSuporteView extends AbstractView<EmailSuporte> {
@@ -20,6 +24,16 @@ public class EmailSuporteView extends AbstractView<EmailSuporte> {
 	@SuppressWarnings("unchecked")
 	protected EmailSuporteDAO getDao() {
 		return emailSuporteDAO;
+	}
+	
+	@Override
+	@PostConstruct
+	public void newInstance() {
+		super.newInstance();
+		List<EmailSuporte> lista = getDao().listAll();
+		if (!lista.isEmpty()) {
+			setEntity(lista.get(0));
+		}
 	}
 
 }
