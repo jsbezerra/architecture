@@ -38,11 +38,12 @@ public class UsuarioView extends AbstractView<Usuario> {
 	public void create() {
 		getEntity().setPassword(new Sha256Hash("secret").toHex());
 		super.create();
+		/*
 		MailBean mail = new MailBean();
 		mail.setTo(getEntity().getEmail());
 		mail.setSubject("Senha");
 		mail.setContent("Sua nova senha é 'secret'.");
-		mailSender.send(mail);
+		mailSender.send(mail);*/
 	}
 
 }

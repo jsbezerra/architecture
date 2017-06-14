@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import br.com.inadimplente.cadastro.Cadastro;
+import br.com.inadimplente.restaurante.Restaurante;
 
 @Entity
 @Table(name = "modelos")
@@ -26,9 +26,9 @@ public class Modelo {
 	private Long id;
 	
 	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="cadastro", unique=true, nullable=false)
+	@JoinColumn(name="restaurante", unique=true, nullable=false)
 	@NotNull
-	private Cadastro cadastro;
+	private Restaurante restaurante;
 	
 	@Column(name="mensagem", nullable=false, unique=false, length=160)
 	@NotNull
@@ -47,12 +47,12 @@ public class Modelo {
 		this.id = id;
 	}
 
-	public Cadastro getCadastro() {
-		return cadastro;
+	public Restaurante getRestaurante() {
+		return restaurante;
 	}
 
-	public void setCadastro(Cadastro cadastro) {
-		this.cadastro = cadastro;
+	public void setRestaurante(Restaurante restaurante) {
+		this.restaurante = restaurante;
 	}
 
 	public String getMensagem() {

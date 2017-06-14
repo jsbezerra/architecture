@@ -15,9 +15,9 @@
 			<h:form>
 				<p:growl id="growl" life="6000" />
 				<h:panelGrid columns="2">
-					<p:outputLabel for="cadastro"
-						value="#{messages['modelocrud.cadastro']}" />
-					<p:inputText id="cadastro" value="#{modeloView.entity.cadastro}"
+					<p:outputLabel for="restaurante"
+						value="#{messages['modelocrud.restaurante']}" />
+					<p:inputText id="restaurante" value="#{modeloView.entity.restaurante}"
 						required="true" />
 
 					<p:outputLabel for="mensagem"
@@ -59,8 +59,8 @@
 						title="#{messages['crud.select']}" process="@this"
 						update=":modeloCrud" />
 				</p:column>
-				<p:column headerText="#{messages['modelo.cadastro']}">
-					<h:outputText value="#{modelo.cadastro}" />
+				<p:column headerText="#{messages['modelo.restaurante']}">
+					<h:outputText value="#{modelo.restaurante}" />
 				</p:column>
 				<p:column headerText="#{messages['modelo.mensagem']}">
 					<h:outputText value="#{modelo.mensagem}" />
