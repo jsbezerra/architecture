@@ -10,33 +10,24 @@
 	#{messages['application.homepage.title']}
 	</ui:define>
 	<ui:define name="content">
-	#{messages['application.welcome']}!
+	#{messages['application.welcome']}, #{authenticator.usuarioLogado}!
 		<p:panel id="restaurantecrud" toggleable="true" closable="true">
 			<h:form>
 				<p:growl id="growl" life="6000" showDetail="true" />
-				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5" rendered="#{votacaoBusiness.canVote()}">
 					<p:outputLabel for="restaurante" value="Restaurante:" />
 					<p:selectOneRadio id="restaurante" value="#{votacaoBusiness.restaurante}"  layout="grid" columns="3">
 						<f:selectItems value="#{votacaoBusiness.restaurantesDisponiveis()}" var="c" itemLabel="#{restaurante}" itemValue="#{restaurante}"/>
 					</p:selectOneRadio>
+                    <f:facet name="footer">
+                        <p:commandButton value="#{messages['votacao.vote']}"
+                                         action="#{votacaoBusiness.votar()}"
+                                         update="@form"
+                                         rendered="true" />
+                    </f:facet>
 				</h:panelGrid>
 			</h:form>
 		</p:panel>
-        <p:separator />
-        <h:form id="restauranteListForm">
-            <p:dataTable id="restauranteList" var="restaurante"
-                         value="#{votacaoBusiness.restaurantesDisponiveis()}">
-                <f:facet name="header">
-                    #{messages['restaurantecrud.datatable']}
-                </f:facet>
-                <p:column headerText="#{messages['restaurante.nome']}">
-                    <h:outputText value="#{restaurante.nome}" />
-                </p:column>
-                <p:column headerText="#{messages['restaurante.situacao']}">
-                    <h:outputText value="#{restaurante.situacao ? messages['crud.active'] : messages['crud.inactive']}" />
-                </p:column>
-            </p:dataTable>
-        </h:form>
 	</ui:define>
 </ui:composition>
 </html>
