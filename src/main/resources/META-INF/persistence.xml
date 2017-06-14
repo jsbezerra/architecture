@@ -4,7 +4,7 @@
 	version="2.1">
 	<persistence-unit name="inadimplentes">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>java:/InadimplentesDS</jta-data-source>
+		<jta-data-source>java:/ArchitectureDS</jta-data-source>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
