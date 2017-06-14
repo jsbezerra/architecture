@@ -8,10 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "restaurantes")
-public class Restaurante {
+public class Restaurante implements Serializable {
 
     public Restaurante() {
         this.situacao = true;
@@ -57,7 +58,8 @@ public class Restaurante {
 	
 	@Override
 	public String toString() {
-		return getNome().toString();
+		return getNome();
 	}
+
 
 }
