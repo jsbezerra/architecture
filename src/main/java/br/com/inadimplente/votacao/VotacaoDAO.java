@@ -1,6 +1,8 @@
 package br.com.inadimplente.votacao;
 
 import javax.inject.Named;
+import javax.persistence.NamedQuery;
+import javax.persistence.TypedQuery;
 
 import br.com.inadimplente.kernel.AbstractDAO;
 
@@ -11,9 +13,14 @@ public class VotacaoDAO extends AbstractDAO<Votacao> {
 		super(Votacao.class);
 	}
 
+	public boolean hasVotacaoAberta() {
+		return getEntityManager().createNamedQuery("votacaoAtual",Votacao.class)
+				.getResultList().size() > 0;
+	}
+
 	public Votacao findVotacaoAtual(){
         return getEntityManager()
-               .createQuery("select v from Votacao v where v.data = CURRENT_DATE", Votacao.class)
+               .createNamedQuery("votacaoAtual", Votacao.class)
                .getSingleResult();
     }
 
