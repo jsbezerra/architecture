@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "votacoes")
+@NamedQuery(name = "votacaoAtual", query = "select v from Votacao v where v.data = CURRENT_DATE")
 public class Votacao {
 
 	public Votacao() {
