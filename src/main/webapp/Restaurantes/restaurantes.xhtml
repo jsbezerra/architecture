@@ -15,25 +15,28 @@
 			<h:form>
 				<p:growl id="growl" life="6000" showDetail="true" />
 				<h:panelGrid columns="2">
-					<p:outputLabel for="login"
-						value="#{messages['restaurantecrud.codigo']}" />
-					<p:inputText id="login" value="#{restauranteView.entity.codigo}"
-						required="true" disabled="true" />
-
 					<p:outputLabel for="nome" value="#{messages['restaurantecrud.nome']}" />
 					<p:inputText id="nome" value="#{restauranteView.entity.nome}"
-						required="true" disabled="true" />
+						required="true"/>
 
 					<p:outputLabel for="situacao"
 						value="#{messages['restaurantecrud.situacao']}" />
 					<p:selectBooleanButton id="situacao"
 										   value="#{restauranteView.entity.situacao}" onLabel="Ativo"
-										   offLabel="Inativo" disabled="#{!restauranteView.persisted}" />
+										   offLabel="Inativo"/>
 					<f:facet name="footer">
+						<p:commandButton value="#{messages['crud.create']}"
+										 action="#{restauranteView.create()}"
+										 update="@form :restauranteListForm:restauranteList"
+										 rendered="#{!restauranteView.persisted}" />
 						<p:commandButton value="#{messages['crud.update']}"
-							action="#{restauranteView.update()}"
-							update="@form :restauranteListForm:restauranteList"
-							rendered="#{restauranteView.persisted}" />
+										 action="#{restauranteView.update()}"
+										 update="@form :restauranteListForm:restauranteList"
+										 rendered="#{restauranteView.persisted}" />
+						<p:commandButton value="#{messages['crud.new']}"
+										 action="#{restauranteView.newInstance()}"
+										 update="@form :restauranteListForm:restauranteList"
+										 rendered="#{restauranteView.persisted}" process="@this" />
 					</f:facet>
 				</h:panelGrid>
 			</h:form>
@@ -51,14 +54,11 @@
 						title="#{messages['crud.select']}" process="@this"
 						update=":restaurantecrud" />
 				</p:column>
-				<p:column headerText="#{messages['restaurante.codigo']}">
-					<h:outputText value="#{restaurante.codigo}" />
-				</p:column>
 				<p:column headerText="#{messages['restaurante.nome']}">
 					<h:outputText value="#{restaurante.nome}" />
 				</p:column>
 				<p:column headerText="#{messages['restaurante.situacao']}">
-					<h:outputText value="#{restaurante.situacao}" />
+					<h:outputText value="#{restaurante.situacao ? messages['crud.active'] : messages['crud.inactive']}" />
 				</p:column>
 			</p:dataTable>
 		</h:form>

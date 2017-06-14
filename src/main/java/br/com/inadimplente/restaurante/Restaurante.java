@@ -13,6 +13,10 @@ import javax.validation.constraints.NotNull;
 @Table(name = "restaurantes")
 public class Restaurante {
 
+    public Restaurante() {
+        this.situacao = true;
+    }
+
 	@Id
 	@SequenceGenerator(name = "RestaurantesGenerator", sequenceName = "sq_restaurantes", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "RestaurantesGenerator", strategy = GenerationType.SEQUENCE)
