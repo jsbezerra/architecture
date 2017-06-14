@@ -1,4 +1,4 @@
-package br.com.inadimplente.cadastro;
+package br.com.inadimplente.restaurante;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,18 +10,14 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "cadastros")
-public class Cadastro {
+@Table(name = "restaurantes")
+public class Restaurante {
 
 	@Id
-	@SequenceGenerator(name = "CadastrosGenerator", sequenceName = "sq_cadastros", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "CadastrosGenerator", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "RestaurantesGenerator", sequenceName = "sq_restaurantes", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "RestaurantesGenerator", strategy = GenerationType.SEQUENCE)
 	@Column(name = "id")
 	private Long id;
-
-	@Column(name = "codigo", nullable = false, unique = true)
-	@NotNull
-	private Long codigo;
 
 	@Column(name = "nome", nullable = false)
 	@NotNull
@@ -37,14 +33,6 @@ public class Cadastro {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
 	}
 
 	public String getNome() {
@@ -65,7 +53,7 @@ public class Cadastro {
 	
 	@Override
 	public String toString() {
-		return getCodigo().toString();
+		return getNome().toString();
 	}
 
 }
