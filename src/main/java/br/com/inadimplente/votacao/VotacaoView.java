@@ -26,4 +26,9 @@ public class VotacaoView extends AbstractView<Votacao> {
 		return votacaoDAO;
 	}
 
+	private void novaVotacao() {
+	    Votacao votacao = new Votacao();
+	    votacao.setData(new Date());
+	    getDao().create(votacao);
+    }
 }

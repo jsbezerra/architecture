@@ -11,4 +11,11 @@ public class VotacaoDAO extends AbstractDAO<Votacao> {
 		super(Votacao.class);
 	}
 
+	public Votacao findVotacaoAtual(){
+        return getEntityManager()
+               .createQuery("select v from Votacao v where v.data = CURRENT_DATE", Votacao.class)
+               .getSingleResult();
+    }
+
+
 }
