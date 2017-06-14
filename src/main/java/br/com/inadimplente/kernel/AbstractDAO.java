@@ -26,7 +26,7 @@ public abstract class AbstractDAO<T> {
 		this.entityClass = entityClass;
 	}
 
-	private EntityManager getEntityManager() {
+	protected EntityManager getEntityManager() {
 		return entityManager;
 	}
 
