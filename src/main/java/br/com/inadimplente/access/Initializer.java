@@ -1,5 +1,7 @@
 package br.com.inadimplente.access;
 
+import br.com.inadimplente.restaurante.Restaurante;
+import br.com.inadimplente.restaurante.RestauranteDAO;
 import br.com.inadimplente.usuario.TipoUsuario;
 import br.com.inadimplente.usuario.Usuario;
 import br.com.inadimplente.usuario.UsuarioDAO;
@@ -17,6 +19,9 @@ public class Initializer {
     @Inject
     private UsuarioDAO usuarioDAO;
 
+    @Inject
+    private RestauranteDAO restauranteDAO;
+
     @PostConstruct
     public void init() {
         if (usuarioDAO.count() == 0) {
@@ -27,6 +32,16 @@ public class Initializer {
             usuario.setNome("Admin");
             usuario.setTipo(TipoUsuario.ADMIN);
             usuarioDAO.create(usuario);
+        }
+        if (restauranteDAO.count() == 0) {
+            Restaurante r = new Restaurante();
+            Restaurante r2 = new Restaurante();
+            r.setNome("Borsatto");
+            r.setSituacao(true);
+            r2.setNome("Le beef");
+            r2.setSituacao(true);
+            restauranteDAO.create(r);
+            restauranteDAO.create(r2);
         }
     }
 }
