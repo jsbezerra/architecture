@@ -61,5 +61,23 @@ public class Restaurante implements Serializable {
 		return getNome();
 	}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Restaurante)) return false;
 
+        Restaurante that = (Restaurante) o;
+
+        if (!getId().equals(that.getId())) return false;
+        if (!getNome().equals(that.getNome())) return false;
+        return getSituacao().equals(that.getSituacao());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId().hashCode();
+        result = 31 * result + getNome().hashCode();
+        result = 31 * result + getSituacao().hashCode();
+        return result;
+    }
 }
