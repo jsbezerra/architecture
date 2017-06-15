@@ -16,8 +16,8 @@
 				<p:growl id="growl" life="6000" showDetail="true" />
 				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5" rendered="#{votacaoBusiness.canVote()}">
 					<p:outputLabel for="restaurante" value="Restaurante:" />
-					<p:selectOneRadio id="restaurante" value="#{votacaoBusiness.restaurante}"  layout="grid" columns="3">
-						<f:selectItems value="#{votacaoBusiness.restaurantesDisponiveis()}" var="c" itemLabel="#{restaurante}" itemValue="#{restaurante}"/>
+					<p:selectOneRadio id="restaurante" value="#{votacaoBusiness.restaurante}"  layout="grid" columns="3" converter="#{restauranteConverter}">
+						<f:selectItems value="#{votacaoBusiness.restaurantesDisponiveis()}" var="restaurante" itemLabel="#{restaurante}" itemValue="#{restaurante}"/>
 					</p:selectOneRadio>
                     <f:facet name="footer">
                         <p:commandButton value="#{messages['votacao.vote']}"

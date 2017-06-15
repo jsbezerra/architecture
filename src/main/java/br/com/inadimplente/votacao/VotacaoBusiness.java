@@ -1,20 +1,29 @@
 package br.com.inadimplente.votacao;
 
+import br.com.inadimplente.access.Authenticator;
 import br.com.inadimplente.restaurante.Restaurante;
 import br.com.inadimplente.restaurante.RestauranteDAO;
 import br.com.inadimplente.usuario.UsuarioDAO;
 
 import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Named
-public class VotacaoBusiness {
+@ViewScoped
+public class VotacaoBusiness implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Restaurante restaurante;
+
+    @Inject
+    private Authenticator authenticator;
 
     @Inject
     private VotacaoDAO votacaoDAO;
@@ -54,7 +63,8 @@ public class VotacaoBusiness {
 
     /*TODO:
         - ocultar botão quando não houver nenhum restaurante
-        - não trazer restaurantes já vencedores nessa semana na pesquisa */
+        - não trazer restaurantes já vencedores nessa semana na pesquisa
+        - não deixar votar duas vezes*/
     public List<Restaurante> restaurantesDisponiveis() {
         return restauranteDAO.listAll();
     }
@@ -62,7 +72,7 @@ public class VotacaoBusiness {
     public void votar() {
         Voto voto = new Voto();
         voto.setRestaurante(getRestaurante());
-        voto.setUsuario(usuarioDAO.findByLogin("jonas"));
+        voto.setUsuario(authenticator.getUsuarioLogado());
         voto.setVotacao(votacaoDAO.findVotacaoAtual());
         votoDAO.create(voto);
     }
