@@ -8,14 +8,8 @@
 <h:form id="menuForm">
 	<p:menubar>
 		<p:menuitem value="#{messages['menu.home']}" url="/home.xhtml" />
-		<p:menuitem value="#{messages['menu.restaurantes']}" url="/Restaurantes/restaurantes.xhtml" />
-		<p:menuitem value="#{messages['menu.votacoes']}" url="/Votacoes/votacoes.xhtml" />
-		<p:submenu label="#{messages['menu.admin']}">
-			<p:menuitem value="#{messages['menu.admin.usuarios']}"
-				url="/Usuarios/usuarios.xhtml" />
-			<p:menuitem value="#{messages['menu.webservice']}" url="/WebService/webservice.xhtml"/>
-			<p:menuitem value="#{messages['menu.suporte']}" url="/Suporte/suporte.xhtml"/>
-		</p:submenu>
+		<p:menuitem value="#{messages['menu.restaurantes']}" url="/Restaurantes/restaurantes.xhtml" rendered="#{authenticator.isAdmin()}"/>
+		<p:menuitem value="#{messages['menu.admin.usuarios']}" url="/Usuarios/usuarios.xhtml" rendered="#{authenticator.isAdmin()}"/>
 		<f:facet name="options">
 			<p:inputText style="margin-right:10px"
 				placeholder="#{messages['application.search']}" rendered="false" />

@@ -46,7 +46,7 @@ public class Initializer {
             usuario.setLogin("jonas");
             usuario.setPassword(new Sha256Hash("jonas").toHex());
             usuario.setNome("Jonas");
-            usuario.setTipo(TipoUsuario.ADMIN);
+            usuario.setTipo(TipoUsuario.NORMAL);
             usuarioDAO.create(usuario);
 
             usuario = new Usuario();
@@ -54,7 +54,7 @@ public class Initializer {
             usuario.setLogin("gabriel");
             usuario.setPassword(new Sha256Hash("gabriel").toHex());
             usuario.setNome("gabriel");
-            usuario.setTipo(TipoUsuario.ADMIN);
+            usuario.setTipo(TipoUsuario.NORMAL);
             usuarioDAO.create(usuario);
 
             usuario = new Usuario();
@@ -62,7 +62,7 @@ public class Initializer {
             usuario.setLogin("wendell");
             usuario.setPassword(new Sha256Hash("wendell").toHex());
             usuario.setNome("wendell");
-            usuario.setTipo(TipoUsuario.ADMIN);
+            usuario.setTipo(TipoUsuario.NORMAL);
             usuarioDAO.create(usuario);
         }
         if (restauranteDAO.count() == 0) {
