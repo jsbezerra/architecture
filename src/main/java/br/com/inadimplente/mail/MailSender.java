@@ -1,5 +1,7 @@
 package br.com.inadimplente.mail;
 
+import javax.ejb.Asynchronous;
+import javax.ejb.Singleton;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -12,8 +14,7 @@ import javax.mail.internet.MimeMessage;
 
 import org.slf4j.Logger;
 
-@Named
-@RequestScoped
+@Singleton
 public class MailSender {
 	
 	@Inject
@@ -23,13 +24,15 @@ public class MailSender {
 	private Logger logger;
 	
 	//TODO transformar esse método em Assíncrono para não pendurar a aplicação
+	@Asynchronous
 	public void send(MailBean mailBean) {
 		Message message = new MimeMessage(session);
 		try {
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailBean.getTo()));
+			message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(mailBean.getTo()));
 			message.setSubject(mailBean.getSubject());
 			message.setText(mailBean.getContent());
 			Transport.send(message);
+			logger.info("e-mail enviado com sucesso para " + mailBean.getTo());
 		} catch (MessagingException e) {
 			//TODO internacionalização
 			logger.error("Não foi possível enviar o e-mail", e);

@@ -1,8 +1,11 @@
 package br.com.inadimplente.votacao;
 
 import br.com.inadimplente.access.Authenticator;
+import br.com.inadimplente.mail.MailBean;
+import br.com.inadimplente.mail.MailSender;
 import br.com.inadimplente.restaurante.Restaurante;
 import br.com.inadimplente.restaurante.RestauranteDAO;
+import br.com.inadimplente.usuario.Usuario;
 import br.com.inadimplente.usuario.UsuarioDAO;
 
 import javax.ejb.Stateless;
@@ -34,6 +37,9 @@ public class VotacaoBusiness implements Serializable {
     @Inject
     private VotoDAO votoDAO;
 
+    @Inject
+    private MailSender mailSender;
+
     @Transactional
     public void createNovaVotacao(){
         Votacao votacao = new Votacao();
@@ -49,10 +55,18 @@ public class VotacaoBusiness implements Serializable {
         Restaurante vencedor = calcularVencedor(votacao);
         votacao.setVencedor(vencedor);
         votacaoDAO.update(votacao);
-        notificar();
+        notificar(vencedor);
     }
 
-    private void notificar() {
+    private void notificar(Restaurante vencedor) {
+        List<Usuario> usuarios = usuarioDAO.listAll();
+        List<String> emails = usuarios.stream().map(u -> u.getEmail()).collect(Collectors.toList());
+        String allMails = String.join(", ", emails);
+        MailBean mail = new MailBean();
+        mail.setTo(allMails);
+        mail.setSubject("Resultado da Votação");
+        mail.setContent("Olá,\n O Restaurante escolhido na votação de hoje foi o " + vencedor.getNome());
+        mailSender.send(mail);
     }
 
     public Restaurante calcularVencedor(Votacao votacao) {

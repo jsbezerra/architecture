@@ -1,5 +1,8 @@
 package br.com.inadimplente.mail;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MailBean {
 
 	private String to;
