@@ -1,5 +1,6 @@
 package br.com.inadimplente.access;
 
+import br.com.inadimplente.usuario.TipoUsuario;
 import br.com.inadimplente.usuario.Usuario;
 import br.com.inadimplente.usuario.UsuarioDAO;
 import org.apache.shiro.SecurityUtils;
@@ -21,6 +22,10 @@ public class Authenticator {
         Subject currentUser = SecurityUtils.getSubject();
         String login = currentUser.getPrincipal().toString();
         return usuarioDAO.findByLogin(login);
+    }
+
+    public Boolean isAdmin() {
+        return getUsuarioLogado().getTipo().equals(TipoUsuario.ADMIN);
     }
 
 }

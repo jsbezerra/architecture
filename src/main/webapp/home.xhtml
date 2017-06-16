@@ -10,24 +10,28 @@
 	#{messages['application.homepage.title']}
 	</ui:define>
 	<ui:define name="content">
-	#{messages['application.welcome']}, jonas #{authenticator.usuarioLogado}!
+	#{messages['application.welcome']}, #{authenticator.usuarioLogado}!
 		<p:panel id="voto" toggleable="true" closable="true">
 			<h:form>
 				<p:growl id="growl" life="6000" showDetail="true" />
 				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5" rendered="#{!votoView.isVotacaoAberta()}">
-					<p:outputLabel value="#{messages[restaurente.winner]} #{votoView.getVencedor()}"/>
+					<p:outputLabel value="#{messages['restaurente.winner']} #{votoView.getVencedor()}"/>
+				</h:panelGrid>
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5" rendered="#{votoView.isVotacaoAberta() and votoView.persisted}">
+					<p:outputLabel value="#{messages['usuario.votoEm']} #{votoView.entity.restaurante}"/>
 				</h:panelGrid>
 				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5" rendered="#{votoView.isVotacaoAberta()}">
-					<p:outputLabel for="restaurante" value="messages['restaurante.disponiveis']" />
+					<p:outputLabel for="restaurante" value="#{messages['restaurante.disponiveis']}" rendered="#{!votoView.persisted}"/>
+                    <p:outputLabel for="restaurante" value="#{messages['restaurante.disponiveis.change']}" rendered="#{votoView.persisted}"/>
 					<p:selectOneRadio id="restaurante" value="#{votoView.restaurante}"  layout="grid" columns="3" converter="#{restauranteConverter}">
 						<f:selectItems value="#{votoView.getRestaurantesDisponiveis()}" var="restaurante" itemLabel="#{restaurante}" itemValue="#{restaurante}"/>
 					</p:selectOneRadio>
                     <f:facet name="footer">
-                        <p:commandButton value="#{messages['votacao.vote']}1"
+                        <p:commandButton value="#{messages['votacao.vote']}"
                                          action="#{votoView.create()}"
                                          update="@form"
                                          rendered="#{!votoView.persisted}" />
-						<p:commandButton value="#{messages['votacao.vote.change']}2"
+						<p:commandButton value="#{messages['votacao.vote.change']}"
 										 action="#{votoView.update()}"
 										 update="@form"
 										 rendered="#{votoView.persisted}" />
