@@ -32,16 +32,51 @@ public class Initializer {
             usuario.setNome("Admin");
             usuario.setTipo(TipoUsuario.ADMIN);
             usuarioDAO.create(usuario);
+
+            usuario = new Usuario();
+            usuario.setEmail("jonas@jonas.com");
+            usuario.setLogin("jonas");
+            usuario.setPassword(new Sha256Hash("jonas").toHex());
+            usuario.setNome("Jonas");
+            usuario.setTipo(TipoUsuario.ADMIN);
+            usuarioDAO.create(usuario);
+
+            usuario = new Usuario();
+            usuario.setEmail("gabriel@gabriel.com");
+            usuario.setLogin("gabriel");
+            usuario.setPassword(new Sha256Hash("gabriel").toHex());
+            usuario.setNome("gabriel");
+            usuario.setTipo(TipoUsuario.ADMIN);
+            usuarioDAO.create(usuario);
+
+            usuario = new Usuario();
+            usuario.setEmail("wendell@wendell.com");
+            usuario.setLogin("wendell");
+            usuario.setPassword(new Sha256Hash("wendell").toHex());
+            usuario.setNome("wendell");
+            usuario.setTipo(TipoUsuario.ADMIN);
+            usuarioDAO.create(usuario);
         }
         if (restauranteDAO.count() == 0) {
             Restaurante r = new Restaurante();
-            Restaurante r2 = new Restaurante();
             r.setNome("Borsatto");
             r.setSituacao(true);
-            r2.setNome("Le beef");
-            r2.setSituacao(true);
             restauranteDAO.create(r);
-            restauranteDAO.create(r2);
+
+            r = new Restaurante();
+            r.setNome("Le beef");
+            r.setSituacao(true);
+            restauranteDAO.create(r);
+
+            r = new Restaurante();
+            r.setNome("Sal & Brasa");
+            r.setSituacao(true);
+            restauranteDAO.create(r);
+
+            r = new Restaurante();
+            r.setNome("Panorama");
+            r.setSituacao(true);
+            restauranteDAO.create(r);
         }
     }
 }
