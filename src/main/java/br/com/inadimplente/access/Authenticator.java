@@ -16,6 +16,7 @@ public class Authenticator {
     @Inject
     private UsuarioDAO usuarioDAO;
 
+    //TODO: redirecionar quando o usuário não houver logado
     public Usuario getUsuarioLogado() {
         Subject currentUser = SecurityUtils.getSubject();
         String login = currentUser.getPrincipal().toString();
