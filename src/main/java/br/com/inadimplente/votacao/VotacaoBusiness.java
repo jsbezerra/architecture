@@ -12,12 +12,15 @@ import javax.inject.Named;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Named
 @ApplicationScoped
 public class VotacaoBusiness implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    private static Integer PRAZO = 7;
 
     @Inject
     private Authenticator authenticator;
@@ -57,7 +60,8 @@ public class VotacaoBusiness implements Serializable {
     public void closeVotacaoAtual() {
         Votacao votacao = votacaoDAO.findVotacaoAtual();
         votacao.setAberta(false);
-        votacao.setVencedor(calcularVencedor(votacao));
+        Restaurante vencedor = calcularVencedor(votacao);
+        votacao.setVencedor(vencedor);
         votacaoDAO.update(votacao);
         notificar();
     }
@@ -82,12 +86,12 @@ public class VotacaoBusiness implements Serializable {
         return vencedor;
     }
 
-    /*TODO:
-        - ocultar botão quando não houver nenhum restaurante
-        - não trazer restaurantes já vencedores nessa semana na pesquisa
-        - não deixar votar duas vezes*/
     public List<Restaurante> getRestaurantesDisponiveis() {
-        return restauranteDAO.listAll();
+        List<Restaurante> ultimos = votacaoDAO.findNUltimosVencedores(PRAZO);
+        List<Restaurante> todos = restauranteDAO.listAll();
+        return todos.stream()
+                .filter(r -> !ultimos.contains(r))
+                .collect(Collectors.toList());
     }
 
     public Votacao getVotacaoAtual() {
@@ -95,7 +99,7 @@ public class VotacaoBusiness implements Serializable {
     }
 
     public boolean canVote() {
-        return getVotacaoAtual().getAberta() && restauranteDAO.count() > 0;
+        return getVotacaoAtual().getAberta() && getRestaurantesDisponiveis().size() > 0;
     }
 
     public Restaurante getRestauranteVencedor() {
