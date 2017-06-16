@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@NamedQuery(name="votoAtualDoUsuario", query = "select v from Voto v where v.usuario = :usuario and v.votacao = :votacao")
 @Table(name = "votos")
 public class Voto {
 
