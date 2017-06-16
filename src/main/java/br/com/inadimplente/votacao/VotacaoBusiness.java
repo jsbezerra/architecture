@@ -51,6 +51,10 @@ public class VotacaoBusiness implements Serializable {
         votacaoDAO.create(votacao);
     }
 
+    public String bullshit() {
+        return "bullshit";
+    }
+
     @Transactional
     public void closeVotacaoAtual() {
         Votacao votacao = votacaoDAO.findVotacaoAtual();
