@@ -10,24 +10,32 @@
 	#{messages['application.homepage.title']}
 	</ui:define>
 	<ui:define name="content">
-	#{messages['application.welcome']}, #{authenticator.usuarioLogado}!
-		<p:panel id="restaurantecrud" toggleable="true" closable="true">
+	#{messages['application.welcome']}, jonas #{authenticator.usuarioLogado}!
+		<p:panel id="voto" toggleable="true" closable="true">
 			<h:form>
 				<p:growl id="growl" life="6000" showDetail="true" />
-				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5" rendered="#{votacaoBusiness.canVote()}">
-					<p:outputLabel for="restaurante" value="Restaurante:" />
-					<p:selectOneRadio id="restaurante" value="#{votacaoBusiness.restaurante}"  layout="grid" columns="3" converter="#{restauranteConverter}">
-						<f:selectItems value="#{votacaoBusiness.restaurantesDisponiveis()}" var="restaurante" itemLabel="#{restaurante}" itemValue="#{restaurante}"/>
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5" rendered="#{!votoView.isVotacaoAberta()}">
+					<p:outputLabel value="#{messages[restaurente.winner]} #{votoView.getVencedor()}"/>
+				</h:panelGrid>
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5" rendered="#{votoView.isVotacaoAberta()}">
+					<p:outputLabel for="restaurante" value="messages['restaurante.disponiveis']" />
+					<p:selectOneRadio id="restaurante" value="#{votoView.restaurante}"  layout="grid" columns="3" converter="#{restauranteConverter}">
+						<f:selectItems value="#{votoView.getRestaurantesDisponiveis()}" var="restaurante" itemLabel="#{restaurante}" itemValue="#{restaurante}"/>
 					</p:selectOneRadio>
                     <f:facet name="footer">
-                        <p:commandButton value="#{messages['votacao.vote']}"
-                                         action="#{votacaoBusiness.votar()}"
+                        <p:commandButton value="#{messages['votacao.vote']}1"
+                                         action="#{votoView.create()}"
                                          update="@form"
-                                         rendered="true" />
+                                         rendered="#{!votoView.persisted}" />
+						<p:commandButton value="#{messages['votacao.vote.change']}2"
+										 action="#{votoView.update()}"
+										 update="@form"
+										 rendered="#{votoView.persisted}" />
                     </f:facet>
 				</h:panelGrid>
 			</h:form>
 		</p:panel>
+        <p:separator />
 	</ui:define>
 </ui:composition>
 </html>

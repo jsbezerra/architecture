@@ -1,5 +1,6 @@
 package br.com.inadimplente.kernel.producer;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Produces;
@@ -13,7 +14,7 @@ public class EntityManagerProducer {
 	
 	@Produces
 	@Default
-	@RequestScoped
+	@ApplicationScoped
 	public EntityManager getEntityManager(){
 		return entityManager;
 	}
