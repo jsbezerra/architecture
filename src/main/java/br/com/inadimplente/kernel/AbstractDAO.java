@@ -5,6 +5,7 @@ import static javax.transaction.Transactional.TxType.REQUIRED;
 
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -14,7 +15,7 @@ import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 @Transactional(value = SUPPORTS)
-@RequestScoped
+@ApplicationScoped
 public abstract class AbstractDAO<T> {
 
 	private Class<T> entityClass;

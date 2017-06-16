@@ -36,6 +36,10 @@ public class Votacao {
     @JoinColumn(name = "restaurante_vencedor", nullable = true)
     private Restaurante vencedor;
 
+    @Column(name = "aberta", nullable = false)
+    @NotNull
+    private Boolean aberta;
+
     public Long getId() {
         return id;
     }
@@ -68,6 +72,12 @@ public class Votacao {
         this.vencedor = vencedor;
     }
 
-	
+    public Boolean getAberta() {
+        return aberta;
+    }
+
+    public void setAberta(Boolean aberta) {
+        this.aberta = aberta;
+    }
 
 }
