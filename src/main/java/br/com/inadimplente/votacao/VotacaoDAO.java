@@ -1,6 +1,7 @@
 package br.com.inadimplente.votacao;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import br.com.inadimplente.kernel.AbstractDAO;
@@ -11,7 +12,6 @@ import java.util.Date;
 import java.util.List;
 
 @Named
-@ApplicationScoped
 public class VotacaoDAO extends AbstractDAO<Votacao> {
 
 	public VotacaoDAO() {

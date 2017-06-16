@@ -5,17 +5,14 @@ import br.com.inadimplente.restaurante.Restaurante;
 import br.com.inadimplente.restaurante.RestauranteDAO;
 import br.com.inadimplente.usuario.UsuarioDAO;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Named
-@ApplicationScoped
+@Stateless
 public class VotacaoBusiness implements Serializable {
 
     private static final long serialVersionUID = 1L;

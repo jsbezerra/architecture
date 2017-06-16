@@ -14,7 +14,7 @@ public class EntityManagerProducer {
 	
 	@Produces
 	@Default
-	@ApplicationScoped
+	@RequestScoped
 	public EntityManager getEntityManager(){
 		return entityManager;
 	}
