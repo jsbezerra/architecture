@@ -37,17 +37,6 @@ public class VotacaoBusiness implements Serializable {
     @Inject
     private VotoDAO votoDAO;
 
-    @PostConstruct
-    @Transactional
-    public void prepararVotacao() {
-        /*
-        if (!votacaoDAO.hasVotacaoAberta()) {
-            Votacao votacao = new Votacao();
-            votacao.setData(new Date());
-            votacaoDAO.create(votacao);
-        }*/
-    }
-
     @Transactional
     public void createNovaVotacao(){
         Votacao votacao = new Votacao();
