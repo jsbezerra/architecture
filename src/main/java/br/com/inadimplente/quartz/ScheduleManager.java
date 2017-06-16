@@ -28,20 +28,20 @@ public class ScheduleManager {
                     .withIdentity("novaVotacaoJob", "votacaoJobs").build();
 
             //CronScheduleBuilder.dailyAtHourAndMinute(22, 23))
-            SimpleTrigger novaVotacaoTrigger = TriggerBuilder
+            CronTrigger novaVotacaoTrigger = TriggerBuilder
                     .newTrigger()
                     .withIdentity("novaVotacaoTrigger", "votacaoTriggers")
                     .startNow()
-                    .withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInMinutes(20).repeatForever())
+                    .withSchedule(CronScheduleBuilder.dailyAtHourAndMinute(06, 00))
                     .build();
 
             JobDetail fechaVotacaoJob = JobBuilder.newJob(FechaVotacaoJob.class)
                     .withIdentity("fechaVotacaoJob", "votacaoJobs").build();
 
-            SimpleTrigger fechaVotacaoTrigger = TriggerBuilder
+            CronTrigger fechaVotacaoTrigger = TriggerBuilder
                     .newTrigger()
                     .withIdentity("fechaVotacaoTrigger", "votacaoTriggers")
-                    .withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInMinutes(2).repeatForever())
+                    .withSchedule(CronScheduleBuilder.dailyAtHourAndMinute(11, 30))
                     .build();
 
             scheduler.scheduleJob(novaVotacaoJob, novaVotacaoTrigger);

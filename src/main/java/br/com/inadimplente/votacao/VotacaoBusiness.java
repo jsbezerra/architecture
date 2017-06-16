@@ -42,6 +42,9 @@ public class VotacaoBusiness implements Serializable {
 
     @Transactional
     public void createNovaVotacao(){
+        if (votacaoDAO.findVotacaoAtual() != null) {
+            return;
+        }
         Votacao votacao = new Votacao();
         votacao.setData(new Date());
         votacao.setAberta(true);
@@ -51,11 +54,13 @@ public class VotacaoBusiness implements Serializable {
     @Transactional
     public void closeVotacaoAtual() {
         Votacao votacao = votacaoDAO.findVotacaoAtual();
-        votacao.setAberta(false);
-        Restaurante vencedor = calcularVencedor(votacao);
-        votacao.setVencedor(vencedor);
-        votacaoDAO.update(votacao);
-        notificar(vencedor);
+        if (votacao != null) {
+            votacao.setAberta(false);
+            Restaurante vencedor = calcularVencedor(votacao);
+            votacao.setVencedor(vencedor);
+            votacaoDAO.update(votacao);
+            notificar(vencedor);
+        }
     }
 
     private void notificar(Restaurante vencedor) {
@@ -95,7 +100,12 @@ public class VotacaoBusiness implements Serializable {
     }
 
     public Votacao getVotacaoAtual() {
-        return votacaoDAO.findVotacaoAtual();
+        Votacao votacao = votacaoDAO.findVotacaoAtual();
+        if (votacao == null) {
+            createNovaVotacao();
+            votacao = votacaoDAO.findVotacaoAtual();
+        }
+        return votacao;
     }
 
     public boolean canVote() {

@@ -26,9 +26,14 @@ public class VotacaoDAO extends AbstractDAO<Votacao> {
 	}
 
 	public Votacao findVotacaoAtual(){
-        return getEntityManager()
+        List<Votacao> votacao = getEntityManager()
                .createNamedQuery("votacaoAtual", Votacao.class)
-               .getSingleResult();
+               .getResultList();
+        if (votacao.size() > 0) {
+			return votacao.get(0);
+		} else {
+        	return null;
+		}
     }
 
 
