@@ -3,6 +3,7 @@ package br.com.inadimplente.kernel;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
 import static javax.transaction.Transactional.TxType.REQUIRED;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -15,8 +16,7 @@ import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 @Transactional(value = SUPPORTS)
-@ApplicationScoped
-public abstract class AbstractDAO<T> {
+public abstract class AbstractDAO<T> implements Serializable {
 
 	private Class<T> entityClass;
 

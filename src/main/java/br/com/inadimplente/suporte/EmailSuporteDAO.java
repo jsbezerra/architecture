@@ -12,6 +12,8 @@ import br.com.inadimplente.kernel.AbstractDAO;
 @Named
 public class EmailSuporteDAO extends AbstractDAO<EmailSuporte> {
 
+	private static final long serialVersionUID = 1L;
+
 	@Inject
 	private Logger logger;
 
