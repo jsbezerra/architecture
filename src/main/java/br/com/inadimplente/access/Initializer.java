@@ -5,12 +5,17 @@ import br.com.inadimplente.restaurante.RestauranteDAO;
 import br.com.inadimplente.usuario.TipoUsuario;
 import br.com.inadimplente.usuario.Usuario;
 import br.com.inadimplente.usuario.UsuarioDAO;
+import br.com.inadimplente.votacao.Votacao;
+import br.com.inadimplente.votacao.VotacaoDAO;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 @Singleton
 @Startup
@@ -21,6 +26,9 @@ public class Initializer {
 
     @Inject
     private RestauranteDAO restauranteDAO;
+
+    @Inject
+    private VotacaoDAO votacaoDAO;
 
     @PostConstruct
     public void init() {
@@ -77,6 +85,13 @@ public class Initializer {
             r.setNome("Panorama");
             r.setSituacao(true);
             restauranteDAO.create(r);
+
+            Votacao v = new Votacao();
+            v.setAberta(false);
+            v.setVencedor(r);
+            Calendar calendar = new GregorianCalendar(2017,6,15);
+            v.setData(calendar.getTime());
+            votacaoDAO.create(v);
         }
     }
 }
