@@ -1,4 +1,4 @@
-package br.com.inadimplente.access;
+package br.com.inadimplente.kernel.starter;
 
 import br.com.inadimplente.restaurante.Restaurante;
 import br.com.inadimplente.restaurante.RestauranteDAO;
