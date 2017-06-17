@@ -27,7 +27,7 @@
 3. Um e-mail é enviado para todos os usuários cadastrados no sistema .
 
 ### Para o Usuário:
-1. Entrar na página inicial, em geral <http://localhost:8080/inadimplente/index.xhtml> 
+1. Entrar na página inicial, em geral <http://localhost:8080/architecture/index.xhtml> 
 e logar com um dos usuários disponíveis.
 - Inicialmente há quatro usuários² disponíveis: `admin`, `gabriel`, `jonas`, `wendell`
 - As senhas são iguais aos usernames
