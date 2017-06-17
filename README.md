@@ -64,6 +64,6 @@ Também permitir "pular" o agendamento dessas votações em finais de semana e/o
 
 ------
 
-¹ Um servidor pré-configurado encontra-se disponível em 
+¹ Um servidor pré-configurado encontra-se disponível em <https://drive.google.com/file/d/0B54WFO11dMHDSU5fUDJyX1JBUXM/view?usp=sharing>
 
 ² Esses usuários e alguns outros dados são gerados sempre que a aplicação é iniciada. Atualmente ela se encontra configurada para recriar o banco sempre que o servidor subir.
