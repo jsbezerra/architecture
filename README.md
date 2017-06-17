@@ -8,6 +8,8 @@
 - Sevidor de Aplicação Wildfly 10.1
   - Servidor de e-mail configurado¹
 
+- Maven 3.5
+
 ## Destaques
 
 - Organização do Código
@@ -22,9 +24,11 @@
 ## Como funciona
 
 ### Para o sistema
-1. Executar o script `standalone.sh` na pasta `/bin` do servidor
-2. Uma nova votação é criada automaticamente todos os dias às 06 a.m. e encerrada às 11:30 a.m.
-3. Um e-mail é enviado para todos os usuários cadastrados no sistema .
+1. Executar `mvn clean package` no diretório do projeto
+2. Descompactar o arquivo `${Diretório}/target/architecture.war` para uma pasta `architecture.war` dentro da diretório `standalone/deployments/` do servidor
+3. Executar o script `standalone.sh` na pasta `/bin` do servidor
+4. Uma nova votação é criada automaticamente todos os dias às 06 a.m. e encerrada às 11:30 a.m.
+5. Um e-mail é enviado para todos os usuários cadastrados no sistema .
 
 ### Para o Usuário:
 1. Entrar na página inicial, em geral <http://localhost:8080/architecture/index.xhtml> 
