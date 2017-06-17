@@ -56,7 +56,7 @@ além de estatísticas sobre os mesmos.
 - Adotar algum critério de justiça para quando houver empates na votação.
 - Tratamento de erros mais amigável quando o usuário tentar acessar páginas internas 
 sem estar logado ou sem possuir permisso.
-- Permitir votaçõs por grupos de pessoas, para casos em que nem todos podem ir almoçar juntos ao memos tempo.
+- Permitir votações por grupos de pessoas, para casos em que nem todos podem ir almoçar juntos ao memos tempo.
 - Permitir o agendamento das votações de forma dinâmica, cadastradas por algum usuário, ao invés de *hard-coded*.
 Também permitir "pular" o agendamento dessas votações em finais de semana e/ou feriados.
 - Permitir que os usuários possam decidir se querem ou não ser notificados e/ou notificar somente aqueles que votarem.
