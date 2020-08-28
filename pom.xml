@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com</groupId>
-	<artifactId>inadimplente</artifactId>
+	<artifactId>architecture</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>inadimplente</name>
+	<name>architecture</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<jdk.version>1.8</jdk.version>
@@ -56,7 +56,7 @@
         </dependency>
 	</dependencies>
 	<build>
-		<finalName>inadimplente</finalName>
+		<finalName>architecture</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
