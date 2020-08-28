@@ -9,7 +9,7 @@
 			<supported-locale>pt_BR</supported-locale>
 		</locale-config>
 		<resource-bundle>
-			<base-name>br.com.inadimplente.messages</base-name>
+			<base-name>br.com.architecture.messages</base-name>
 			<var>messages</var>
 		</resource-bundle>
 	</application>

@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/menuTemplate.xhtml">
+	<ui:define name="title">
+		#{messages['restaurantepage.title']}
+	</ui:define>
+	<ui:define name="content">
+		<p:panel id="restaurantecrud" toggleable="true" closable="true">
+			<h:form>
+				<p:growl id="growl" life="6000" showDetail="true" />
+				<h:panelGrid columns="2">
+					<p:outputLabel for="nome" value="#{messages['restaurantecrud.nome']}" />
+					<p:inputText id="nome" value="#{restauranteView.entity.nome}"
+						required="true"/>
+
+					<p:outputLabel for="situacao"
+						value="#{messages['restaurantecrud.situacao']}" />
+					<p:selectBooleanButton id="situacao"
+										   value="#{restauranteView.entity.situacao}" onLabel="Ativo"
+										   offLabel="Inativo"/>
+					<f:facet name="footer">
+						<p:commandButton value="#{messages['crud.create']}"
+										 action="#{restauranteView.create()}"
+										 update="@form :restauranteListForm:restauranteList"
+										 rendered="#{!restauranteView.persisted}" />
+						<p:commandButton value="#{messages['crud.update']}"
+										 action="#{restauranteView.update()}"
+										 update="@form :restauranteListForm:restauranteList"
+										 rendered="#{restauranteView.persisted}" />
+						<p:commandButton value="#{messages['crud.new']}"
+										 action="#{restauranteView.newInstance()}"
+										 update="@form :restauranteListForm:restauranteList"
+										 rendered="#{restauranteView.persisted}" process="@this" />
+					</f:facet>
+				</h:panelGrid>
+			</h:form>
+		</p:panel>
+		<p:separator />
+		<h:form id="restauranteListForm">
+			<p:dataTable id="restauranteList" var="restaurante"
+				value="#{restauranteDAO.listAll()}">
+				<f:facet name="header">
+					#{messages['restaurantecrud.datatable']}
+				</f:facet>
+				<p:column>
+					<p:commandButton action="#{restauranteView.setEntity(restaurante)}"
+						id="iconOnly" icon="ui-icon-disk"
+						title="#{messages['crud.select']}" process="@this"
+						update=":restaurantecrud" />
+				</p:column>
+				<p:column headerText="#{messages['restaurante.nome']}">
+					<h:outputText value="#{restaurante.nome}" />
+				</p:column>
+				<p:column headerText="#{messages['restaurante.situacao']}">
+					<h:outputText value="#{restaurante.situacao ? messages['crud.active'] : messages['crud.inactive']}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

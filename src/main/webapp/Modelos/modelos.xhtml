@@ -8,65 +8,65 @@
 
 <ui:composition template="/WEB-INF/templates/menuTemplate.xhtml">
 	<ui:define name="title">
-		#{messages['modelopage.title']}
+		#{messages['votacaopage.title']}
 	</ui:define>
 	<ui:define name="content">
-		<p:panel id="modeloCrud" toggleable="true" closable="true">
+		<p:panel id="votacaoCrud" toggleable="true" closable="true">
 			<h:form>
 				<p:growl id="growl" life="6000" />
 				<h:panelGrid columns="2">
-					<p:outputLabel for="cadastro"
-						value="#{messages['modelocrud.cadastro']}" />
-					<p:inputText id="cadastro" value="#{modeloView.entity.cadastro}"
+					<p:outputLabel for="restaurante"
+						value="#{messages['votacaocrud.restaurante']}" />
+					<p:inputText id="restaurante" value="#{votacaoView.entity.restaurante}"
 						required="true" />
 
 					<p:outputLabel for="mensagem"
-						value="#{messages['modelocrud.mensagem']}" />
-					<p:inputText id="mensagem" value="#{modeloView.entity.mensagem}"
+						value="#{messages['votacaocrud.mensagem']}" />
+					<p:inputText id="mensagem" value="#{votacaoView.entity.mensagem}"
 						required="true" />
 
-					<p:outputLabel for="prazo" value="#{messages['modelocrud.prazo']}" />
-					<p:inputText id="prazo" value="#{modeloView.entity.prazo}" required="true">
+					<p:outputLabel for="prazo" value="#{messages['votacaocrud.prazo']}" />
+					<p:inputText id="prazo" value="#{votacaoView.entity.prazo}" required="true">
 						<f:validateDoubleRange minimum="1" maximum="365" />
 					</p:inputText>
 					<f:facet name="footer">
 						<p:commandButton value="#{messages['crud.create']}"
-							action="#{modeloView.create()}"
-							update="@form :modeloListForm:modeloList"
-							rendered="#{!modeloView.persisted}" />
+							action="#{votacaoView.create()}"
+							update="@form :votacaoListForm:votacaoList"
+							rendered="#{!votacaoView.persisted}" />
 						<p:commandButton value="#{messages['crud.update']}"
-							action="#{modeloView.update()}"
-							update="@form :modeloListForm:modeloList"
-							rendered="#{modeloView.persisted}" />
+							action="#{votacaoView.update()}"
+							update="@form :votacaoListForm:votacaoList"
+							rendered="#{votacaoView.persisted}" />
 						<p:commandButton value="#{messages['crud.new']}"
-							action="#{modeloView.newInstance()}"
-							update="@form :modeloListForm:modeloList"
-							rendered="#{modeloView.persisted}" process="@this" />
+										 action="#{votacaoView.newInstance()}"
+										 update="@form :votacaoListForm:votacaoList"
+										 rendered="#{votacaoView.persisted}" process="@this" />
 					</f:facet>
 				</h:panelGrid>
 			</h:form>
 		</p:panel>
 		<p:separator />
-		<h:form id="modeloListForm">
-			<p:dataTable id="modeloList" var="modelo"
-				value="#{modeloDAO.listAll()}">
+		<h:form id="votacaoListForm">
+			<p:dataTable id="votacaoList" var="votacao"
+				value="#{votacaoDAO.listAll()}">
 				<f:facet name="header">
-					#{messages['modelocrud.datatable']}
+					#{messages['votacaocrud.datatable']}
 				</f:facet>
 				<p:column>
-					<p:commandButton action="#{modeloView.setEntity(modelo)}"
+					<p:commandButton action="#{votacaoView.setEntity(votacao)}"
 						id="iconOnly" icon="ui-icon-disk"
 						title="#{messages['crud.select']}" process="@this"
-						update=":modeloCrud" />
+						update=":votacaoCrud" />
 				</p:column>
-				<p:column headerText="#{messages['modelo.cadastro']}">
-					<h:outputText value="#{modelo.cadastro}" />
+				<p:column headerText="#{messages['votacao.restaurante']}">
+					<h:outputText value="#{votacao.restaurante}" />
 				</p:column>
-				<p:column headerText="#{messages['modelo.mensagem']}">
-					<h:outputText value="#{modelo.mensagem}" />
+				<p:column headerText="#{messages['votacao.mensagem']}">
+					<h:outputText value="#{votacao.mensagem}" />
 				</p:column>
-				<p:column headerText="#{messages['modelo.prazo']}">
-					<h:outputText value="#{modelo.prazo}" />
+				<p:column headerText="#{messages['votacao.prazo']}">
+					<h:outputText value="#{votacao.prazo}" />
 				</p:column>
 			</p:dataTable>
 		</h:form>
