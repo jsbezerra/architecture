@@ -4,3 +4,8 @@
 target/
 .metadata/
 *.orig
+
+# IDE folders and files
+.idea/
+*.iml
+
